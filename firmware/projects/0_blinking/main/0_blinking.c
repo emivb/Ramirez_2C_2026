@@ -21,7 +21,8 @@
 #include "freertos/task.h"
 #include "led.h"
 /*==================[macros and definitions]=================================*/
-#define CONFIG_BLINK_PERIOD 1000
+#define CONFIG_BLINK_PERIOD 5000
+#define CONFIG_BLINK_2 1000
 /*==================[internal data definition]===============================*/
 
 /*==================[internal functions declaration]=========================*/
@@ -35,7 +36,7 @@ void app_main(void){
         vTaskDelay(CONFIG_BLINK_PERIOD / portTICK_PERIOD_MS);
         printf("LED OFF\n");
         LedOff(LED_1);
-        vTaskDelay(CONFIG_BLINK_PERIOD / portTICK_PERIOD_MS);
+        vTaskDelay(CONFIG_BLINK_2 / portTICK_PERIOD_MS);
     }
 }
 /*==================[end of file]============================================*/
