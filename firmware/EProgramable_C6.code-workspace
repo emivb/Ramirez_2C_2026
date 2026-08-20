@@ -20,6 +20,12 @@
         },
         {
             "path": "./projects/x_template"
+        },
+        {
+            "path": "projects/Ejercicio_3"
+        },
+        {
+            "path": "projects/Ejer_4"
         }
     ],
     "settings": {
