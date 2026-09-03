@@ -8,9 +8,10 @@
  *
  * |   Date	    | Description                                    |
  * |:----------:|:-----------------------------------------------|
- * | 12/09/2023 | Document creation		                         |
+ * | 06/08/2023 | Document creation		                         |
+ * | 06/08/2026 | Document finalization	                         |
  *
- * @author Albano Peñalva (albano.penalva@uner.edu.ar)
+ * @author Emiliano Ramirez (emilianoalanizvb@gmail.com)
  *
  */
 
@@ -29,7 +30,7 @@
 
 /*==================[external functions definition]==========================*/
 void app_main(void){
-    LedsInit();
+    LedsInit(); //Inicializacion de la salida para Leds
     while(true){
         printf("LED ON\n");
         LedOn(LED_1);

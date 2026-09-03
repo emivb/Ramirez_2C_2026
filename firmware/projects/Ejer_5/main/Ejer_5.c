@@ -8,18 +8,23 @@
  *
  * @section hardConn Hardware Connection
  *
- * |    Peripheral  |   ESP32   	|
+ * |    Peripheral  |   ESP32C6   	|
  * |:--------------:|:--------------|
- * | 	PIN_X	 	| 	GPIO_X		|
- *
+ * |      D1        |   GPIO_20     |
+ * |      D2        |   GPIO_21     |
+ * |      D3        |   GPIO_22     |
+ * |      D4        |   GPIO_23     |
+ * |      +5V       |     +5V       |
+ * |      GND       |     GND       |
  *
  * @section changelog Changelog
  *
  * |   Date	    | Description                                    |
  * |:----------:|:-----------------------------------------------|
- * | 12/09/2023 | Document creation		                         |
+ * | 20/08/2026 | Document creation		                         |
+ * | 26/08/2026 | Document finalization	                         |
  *
- * @author Albano Peñalva (albano.penalva@uner.edu.ar)
+ * @author Emiliano Ramirez (emilianoalanizvb@gmail.com)
  *
  */
 

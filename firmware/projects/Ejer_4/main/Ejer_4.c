@@ -1,14 +1,14 @@
-/*! @mainpage Template
+/*! @mainpage Ejer_4
  *
  * @section genDesc General Description
  *
- * This section describes how the program works.
+ * Se le carga un numero de hasta 3 digitos, y lo descompone en bcd almacenandolo en un array
  *
  * <a href="https://drive.google.com/...">Operation Example</a>
  *
  * @section hardConn Hardware Connection
  *
- * |    Peripheral  |   ESP32   	|
+ * |    Peripheral  |   ESP32C6   	|
  * |:--------------:|:--------------|
  * | 	PIN_X	 	| 	GPIO_X		|
  *
@@ -17,9 +17,10 @@
  *
  * |   Date	    | Description                                    |
  * |:----------:|:-----------------------------------------------|
- * | 12/09/2023 | Document creation		                         |
+ * | 13/08/2023 | Document creation		                         |
+ * | 23/08/2026 | Document finalization	                         |
  *
- * @author Albano Peñalva (albano.penalva@uner.edu.ar)
+ * @author Emiliano Ramirez (emilianoalanizvb@gmail.com)
  *
  */
 
@@ -28,7 +29,7 @@
 #include <stdint.h>
 
 /*==================[macros and definitions]=================================*/
-void convertidor(uint16_t dato, uint8_t digitos, int *bcd_num);
+void convertidor(uint16_t dato, uint8_t digitos, int *bcd_num); //Le voy diciendo como va a ser la función
 
 /*==================[internal data definition]===============================*/
 
@@ -36,7 +37,6 @@ void convertidor(uint16_t dato, uint8_t digitos, int *bcd_num);
 void convertidor(uint16_t dato, uint8_t digitos, int *bcd_num)
 {
 	int dig;
-    
     for (uint8_t i = 0; i < digitos; i++)
     {
         dig = dato % 10;     // Extrae el dígito menos significativo
