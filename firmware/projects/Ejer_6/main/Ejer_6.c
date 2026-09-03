@@ -123,7 +123,7 @@ void app_main(void){
 	cont[3].pin =(23);
 	cont[3].dir = 1;
 	GPIOInit(cont[3].pin, GPIO_OUTPUT);
-	uint16_t numero = 321; 		// Defino el numero a convertir
+	uint16_t numero = 130; 		// Defino el numero a convertir
     uint8_t cant_digitos = 3;	// Pongo de cuantos digitos es
 
 	convertidor(numero, cant_digitos,cont,dis);
