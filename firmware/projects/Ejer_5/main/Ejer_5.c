@@ -26,31 +26,44 @@
 /*==================[inclusions]=============================================*/
 #include <stdio.h>
 #include <stdint.h>
+#include <gpio_mcu.h>
 
 /*==================[macros and definitions]=================================*/
-void convertidor(uint16_t dato, uint8_t digitos, int *bcd_num);
 
 /*==================[internal data definition]===============================*/
+typedef struct
+{
+	gpio_t pin;			/*!< GPIO pin number */
+	io_t dir;			/*!< GPIO direction '0' IN;  '1' OUT*/
+} gpioConf_t;
 
 /*==================[internal functions declaration]=========================*/
-void convertidor(uint16_t dato, uint8_t digitos, int *bcd_num)
-{
-	int dig;
-    
-    for (uint8_t i = 0; i < digitos; i++)
-    {
-        dig = dato % 10;     // Extrae el dígito menos significativo
-        dato /= 10;          // Elimina el ultimo digito
-		bcd_num[i] = dig;    // Carga el digito
-    }
+void seteado(uint8_t BCD, gpioConf_t config[4]){
+	for (size_t i = 0; i < 4; i++)
+	{
+		uint8_t num =0;
+		num = (BCD >>i) & 1;
+		if (num==1){
+			GPIOOn(config[i].pin);
+		}
+		else{
+			GPIOOff(config[i].pin);
+		}
+	}
 }
 
 /*==================[external functions definition]==========================*/
 void app_main(void){
-	uint16_t numero = 376; 		// Defino el numero a convertir
-    uint8_t cant_digitos = 3;	// Pongo de cuantos digitos es
-    int BCD[3]; 			    // Array para guardar el bcd
-    convertidor(numero, cant_digitos, BCD); // Llamada a la función pasando el dato, la cantidad de dígitos y el array
+	gpioConf_t cont[4];
+	for (size_t i = 0; i < 4; i++)
+	{
+		cont[i].pin =(20+i);
+		cont[i].dir = 1;
+		GPIOInit(cont[i].pin, GPIO_OUTPUT);
+	}
+	uint8_t num;
+	num = 7;
+	seteado(num, cont);
 }
 
 /*==================[end of file]============================================*/
