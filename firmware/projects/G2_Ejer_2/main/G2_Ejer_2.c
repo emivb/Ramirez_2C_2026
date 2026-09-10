@@ -34,7 +34,6 @@ void Leds(uint16_t distancia); //Le voy diciendo como va a ser la función
 /*==================[internal data definition]===============================*/
 TaskHandle_t Mostrar_task_handle = NULL;
 TaskHandle_t Medir_task_handle = NULL;
-TaskHandle_t Teclas_task_handle = NULL;
 bool prender = true;
 bool mantener = false;
 uint16_t distancia;
@@ -107,7 +106,7 @@ static void Mostrar_task(void *pvParameter){
     }
 }
 
-static void Teclas_task(void *pvParameter){
+void Teclas_task(){
     while(true){
         uint8_t teclas;
         teclas  = SwitchesRead();
@@ -145,6 +144,5 @@ void app_main(void){
     HcSr04Init(GPIO_3,GPIO_2);
     
     xTaskCreate(Mostrar_task, "LED_1", 512, NULL, 5, &Mostrar_task_handle); //(5 prioridad mayor 0 mas baja, forma de acceder a la tarea)
-    xTaskCreate(Teclas_task, "LED_2", 512, NULL, 5, &Teclas_task_handle);
     xTaskCreate(Medir_task, "LED_3", 512, NULL, 5, &Medir_task_handle);
 }
