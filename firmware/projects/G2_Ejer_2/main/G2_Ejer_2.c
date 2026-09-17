@@ -25,6 +25,7 @@
 #include "switch.h"
 #include "hc_sr04.h"
 
+
 /*==================[macros and definitions]=================================*/
 #define mostrar_delay 100
 #define medir_delay 1000
@@ -36,7 +37,7 @@ TaskHandle_t Mostrar_task_handle = NULL;
 TaskHandle_t Medir_task_handle = NULL;
 bool prender = true;
 bool mantener = false;
-uint16_t distancia;
+uint16_t distancia = 0;
 /*==================[internal functions declaration]=========================*/
 void apagartodo(){
     LedsOffAll();
@@ -105,23 +106,13 @@ static void Mostrar_task(void *pvParameter){
         vTaskDelay(mostrar_delay / portTICK_PERIOD_MS);
     }
 }
-
-void Teclas_task(){
-    while(true){
-        uint8_t teclas;
-        teclas  = SwitchesRead();
-        if (teclas == SWITCH_1)
-        {
-            toggle(&prender);
-        }
-        if(teclas == SWITCH_2)
-        {
-            toggle(&mantener);
-        }
-        
-        vTaskDelay(teclas_delay / portTICK_PERIOD_MS);
-    }
+void Tecla1(void *pvParameter){
+    toggle(&prender);
 }
+void Tecla2(void *pvParameter){
+    toggle(&mantener);
+}
+
 
 static void Medir_task(void *pvParameter){
     while(true){
@@ -142,7 +133,9 @@ void app_main(void){
     LcdItsE0803Init();
     SwitchesInit();
     HcSr04Init(GPIO_3,GPIO_2);
-    
+    SwitchActivInt(SWITCH_1,&Tecla1,NULL);
+    SwitchActivInt(SWITCH_2,&Tecla2,NULL);
+
     xTaskCreate(Mostrar_task, "LED_1", 512, NULL, 5, &Mostrar_task_handle); //(5 prioridad mayor 0 mas baja, forma de acceder a la tarea)
     xTaskCreate(Medir_task, "LED_3", 512, NULL, 5, &Medir_task_handle);
 }
