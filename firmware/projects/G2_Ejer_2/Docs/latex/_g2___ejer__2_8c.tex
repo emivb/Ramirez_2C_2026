@@ -1,0 +1,301 @@
+\doxysection{Referencia del archivo C:/\+\+Users/\+\+Emi/\+\+Documents/\+\+Repositorios/\+\+Ramirez\+\_\+2\+C\+\_\+2026/\+firmware/\+projects/\+\+G2\+\_\+\+Ejer\+\_\+2/\+main/\+\+G2\+\_\+\+Ejer\+\_\+2.c}
+\hypertarget{_g2___ejer__2_8c}{}\label{_g2___ejer__2_8c}\index{C:/Users/Emi/Documents/Repositorios/Ramirez\_2C\_2026/firmware/projects/G2\_Ejer\_2/main/G2\_Ejer\_2.c@{C:/Users/Emi/Documents/Repositorios/Ramirez\_2C\_2026/firmware/projects/G2\_Ejer\_2/main/G2\_Ejer\_2.c}}
+
+
+Medición de distancia con HC-\/\+SR04, display LCD, LEDs y control por interrupciones de switches.  
+
+
+{\ttfamily \+\#include $<$stdio.\+h$>$}\newline
+{\ttfamily \+\#include $<$stdint.\+h$>$}\newline
+{\ttfamily \+\#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \+\#include "{}freertos/\+\+Free\+RTOS.\+h"{}}\newline
+{\ttfamily \+\#include "{}freertos/\+task.\+h"{}}\newline
+{\ttfamily \+\#include "{}led.\+h"{}}\newline
+{\ttfamily \+\#include "{}lcditse0803.\+h"{}}\newline
+{\ttfamily \+\#include "{}switch.\+h"{}}\newline
+{\ttfamily \+\#include "{}hc\+\_\+sr04.\+h"{}}\newline
+\doxysubsubsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{_g2___ejer__2_8c_af97daccf59623ad73d259a1f57f48e8b}{mostrar\+\_\+delay}}~100
+\begin{DoxyCompactList}\small\item\em Valor en milisegundos para el refresco del display LCD y leds. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{_g2___ejer__2_8c_ad8ed67e2e164531e3388c541853e0503}{medir\+\_\+delay}}~1000
+\begin{DoxyCompactList}\small\item\em Valor en milisegundos para el tiempo entre cada medición de distancia. \end{DoxyCompactList}\item 
+\+\#define \doxymbox{\hyperlink{_g2___ejer__2_8c_a019475a4e5a7a09d7c4c3e717ce4865e}{teclas\+\_\+delay}}~200
+\begin{DoxyCompactList}\small\item\em Valor en milisegundos para la verificación del estado de las teclas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{_g2___ejer__2_8c_a970365c016042696a7ad9d75aac45d64}{apagartodo}} (void)
+\begin{DoxyCompactList}\small\item\em Apaga todos los leds y limpia la pantalla LCD. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_g2___ejer__2_8c_a294b2640630c0906163bb26d35e88e3a}{Leds}} (uint16\+\_\+t dis)
+\begin{DoxyCompactList}\small\item\em Utiliza los Leds como vúmetro de distancia en centímetros. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_g2___ejer__2_8c_ad68dd071e4a9747b073f3b9324745fa6}{toggle}} (bool \texorpdfstring{$\ast$}{*}al)
+\begin{DoxyCompactList}\small\item\em Alterna el valor booleano de una variable apuntada por el parámetro. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_g2___ejer__2_8c_ae7b2398b45b3a4e147bb773f6d7fd915}{Tecla1}} (void \texorpdfstring{$\ast$}{*}pv\+Parameter)
+\begin{DoxyCompactList}\small\item\em Función de servicio de interrupción asignada al SWITCH\+\_\+1. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_g2___ejer__2_8c_aab4aa84a51d1ae0bc3198a14fd573653}{Tecla2}} (void \texorpdfstring{$\ast$}{*}pv\+Parameter)
+\begin{DoxyCompactList}\small\item\em Función de servicio de interrupción asignada al SWITCH\+\_\+2. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_g2___ejer__2_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}{app\+\_\+main}} (void)
+\begin{DoxyCompactList}\small\item\em Función principal de la aplicación. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Task\+Handle\+\_\+t \doxymbox{\hyperlink{_g2___ejer__2_8c_a2697c9427db0ca0ce43f563949c84da9}{Mostrar\+\_\+task\+\_\+handle}} = NULL
+\begin{DoxyCompactList}\small\item\em Handle para la tarea encargada de mostrar la información en leds y pantalla. \end{DoxyCompactList}\item 
+Task\+Handle\+\_\+t \doxymbox{\hyperlink{_g2___ejer__2_8c_ac775c51d06b43d7dcf5458c6864f9577}{Medir\+\_\+task\+\_\+handle}} = NULL
+\begin{DoxyCompactList}\small\item\em Handle para la tarea encargada de realizar las mediciones de distancia. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{_g2___ejer__2_8c_a3875f2da97e41ea8543af2b772e50133}{prender}} = true
+\begin{DoxyCompactList}\small\item\em Estado del sistema (true = encendido / encender mediciones, false = apagado). \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{_g2___ejer__2_8c_a66eb34a4e5e5fb8142a3471180198b3c}{mantener}} = false
+\begin{DoxyCompactList}\small\item\em Estado de congelación de pantalla (true = mantener último valor, false = actualizar). \end{DoxyCompactList}\item 
+uint16\+\_\+t \doxymbox{\hyperlink{_g2___ejer__2_8c_aec40b15ff3098bdb2425eb4dc9c11a18}{distancia}} = 0
+\begin{DoxyCompactList}\small\item\em Variable global que almacena el valor actual de la distancia medida en centímetros. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Medición de distancia con HC-\/\+SR04, display LCD, LEDs y control por interrupciones de switches. 
+
+
+
+Definición en el archivo \doxymbox{\hyperlink{_g2___ejer__2_8c_source}{G2\+\_\+\+Ejer\+\_\+2.\+c}}.
+
+
+
+\label{_g2___ejer__2_8c_doc-define-members}
+\Hypertarget{_g2___ejer__2_8c_doc-define-members}
+\doxysubsection{Documentación de «define»}
+\Hypertarget{_g2___ejer__2_8c_ad8ed67e2e164531e3388c541853e0503}\index{G2\_Ejer\_2.c@{G2\_Ejer\_2.c}!medir\_delay@{medir\_delay}}
+\index{medir\_delay@{medir\_delay}!G2\_Ejer\_2.c@{G2\_Ejer\_2.c}}
+\doxysubsubsection{\texorpdfstring{medir\_delay}{medir\_delay}}
+{\footnotesize\ttfamily \label{_g2___ejer__2_8c_ad8ed67e2e164531e3388c541853e0503} 
+\+\#define medir\+\_\+delay~1000}
+
+
+
+Valor en milisegundos para el tiempo entre cada medición de distancia. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__2_8c_source_l00048}{48}} del archivo \doxymbox{\hyperlink{_g2___ejer__2_8c_source}{G2\+\_\+\+Ejer\+\_\+2.\+c}}.
+
+\Hypertarget{_g2___ejer__2_8c_af97daccf59623ad73d259a1f57f48e8b}\index{G2\_Ejer\_2.c@{G2\_Ejer\_2.c}!mostrar\_delay@{mostrar\_delay}}
+\index{mostrar\_delay@{mostrar\_delay}!G2\_Ejer\_2.c@{G2\_Ejer\_2.c}}
+\doxysubsubsection{\texorpdfstring{mostrar\_delay}{mostrar\_delay}}
+{\footnotesize\ttfamily \label{_g2___ejer__2_8c_af97daccf59623ad73d259a1f57f48e8b} 
+\+\#define mostrar\+\_\+delay~100}
+
+
+
+Valor en milisegundos para el refresco del display LCD y leds. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__2_8c_source_l00042}{42}} del archivo \doxymbox{\hyperlink{_g2___ejer__2_8c_source}{G2\+\_\+\+Ejer\+\_\+2.\+c}}.
+
+\Hypertarget{_g2___ejer__2_8c_a019475a4e5a7a09d7c4c3e717ce4865e}\index{G2\_Ejer\_2.c@{G2\_Ejer\_2.c}!teclas\_delay@{teclas\_delay}}
+\index{teclas\_delay@{teclas\_delay}!G2\_Ejer\_2.c@{G2\_Ejer\_2.c}}
+\doxysubsubsection{\texorpdfstring{teclas\_delay}{teclas\_delay}}
+{\footnotesize\ttfamily \label{_g2___ejer__2_8c_a019475a4e5a7a09d7c4c3e717ce4865e} 
+\+\#define teclas\+\_\+delay~200}
+
+
+
+Valor en milisegundos para la verificación del estado de las teclas. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__2_8c_source_l00054}{54}} del archivo \doxymbox{\hyperlink{_g2___ejer__2_8c_source}{G2\+\_\+\+Ejer\+\_\+2.\+c}}.
+
+
+
+\label{_g2___ejer__2_8c_doc-func-members}
+\Hypertarget{_g2___ejer__2_8c_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{_g2___ejer__2_8c_a970365c016042696a7ad9d75aac45d64}\index{G2\_Ejer\_2.c@{G2\_Ejer\_2.c}!apagartodo@{apagartodo}}
+\index{apagartodo@{apagartodo}!G2\_Ejer\_2.c@{G2\_Ejer\_2.c}}
+\doxysubsubsection{\texorpdfstring{apagartodo()}{apagartodo()}}
+{\footnotesize\ttfamily \label{_g2___ejer__2_8c_a970365c016042696a7ad9d75aac45d64} 
+void apagartodo (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Apaga todos los leds y limpia la pantalla LCD. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__2_8c_source_l00116}{116}} del archivo \doxymbox{\hyperlink{_g2___ejer__2_8c_source}{G2\+\_\+\+Ejer\+\_\+2.\+c}}.
+
+\Hypertarget{_g2___ejer__2_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}\index{G2\_Ejer\_2.c@{G2\_Ejer\_2.c}!app\_main@{app\_main}}
+\index{app\_main@{app\_main}!G2\_Ejer\_2.c@{G2\_Ejer\_2.c}}
+\doxysubsubsection{\texorpdfstring{app\_main()}{app\_main()}}
+{\footnotesize\ttfamily \label{_g2___ejer__2_8c_a630544a7f0a2cc40d8a7fefab7e2fe70} 
+void app\+\_\+main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Función principal de la aplicación. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__2_8c_source_l00206}{206}} del archivo \doxymbox{\hyperlink{_g2___ejer__2_8c_source}{G2\+\_\+\+Ejer\+\_\+2.\+c}}.
+
+\Hypertarget{_g2___ejer__2_8c_a294b2640630c0906163bb26d35e88e3a}\index{G2\_Ejer\_2.c@{G2\_Ejer\_2.c}!Leds@{Leds}}
+\index{Leds@{Leds}!G2\_Ejer\_2.c@{G2\_Ejer\_2.c}}
+\doxysubsubsection{\texorpdfstring{Leds()}{Leds()}}
+{\footnotesize\ttfamily \label{_g2___ejer__2_8c_a294b2640630c0906163bb26d35e88e3a} 
+void Leds (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{dis}{}\end{DoxyParamCaption})}
+
+
+
+Utiliza los Leds como vúmetro de distancia en centímetros. 
+
+Configuración de encendido:
+\begin{DoxyItemize}
+\item dis \texorpdfstring{$<$}{<} 10 cm: Todos los leds apagados.
+\item 10 cm \texorpdfstring{$<$}{<}= dis \texorpdfstring{$<$}{<} 20 cm: LED\+\_\+1 encendido.
+\item 20 cm \texorpdfstring{$<$}{<}= dis \texorpdfstring{$<$}{<} 30 cm: LED\+\_\+1 y LED\+\_\+2 encendidos.
+\item dis \texorpdfstring{$>$}{>}= 30 cm: LED\+\_\+1, LED\+\_\+2 y LED\+\_\+3 encendidos.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parámetros}
+{\em dis} & Distancia medida en centímetros. \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__2_8c_source_l00123}{123}} del archivo \doxymbox{\hyperlink{_g2___ejer__2_8c_source}{G2\+\_\+\+Ejer\+\_\+2.\+c}}.
+
+\Hypertarget{_g2___ejer__2_8c_ae7b2398b45b3a4e147bb773f6d7fd915}\index{G2\_Ejer\_2.c@{G2\_Ejer\_2.c}!Tecla1@{Tecla1}}
+\index{Tecla1@{Tecla1}!G2\_Ejer\_2.c@{G2\_Ejer\_2.c}}
+\doxysubsubsection{\texorpdfstring{Tecla1()}{Tecla1()}}
+{\footnotesize\ttfamily \label{_g2___ejer__2_8c_ae7b2398b45b3a4e147bb773f6d7fd915} 
+void Tecla1 (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameter}{}\end{DoxyParamCaption})}
+
+
+
+Función de servicio de interrupción asignada al SWITCH\+\_\+1. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pv\+Parameter} & Puntero a parámetros (no utilizado). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__2_8c_source_l00157}{157}} del archivo \doxymbox{\hyperlink{_g2___ejer__2_8c_source}{G2\+\_\+\+Ejer\+\_\+2.\+c}}.
+
+\Hypertarget{_g2___ejer__2_8c_aab4aa84a51d1ae0bc3198a14fd573653}\index{G2\_Ejer\_2.c@{G2\_Ejer\_2.c}!Tecla2@{Tecla2}}
+\index{Tecla2@{Tecla2}!G2\_Ejer\_2.c@{G2\_Ejer\_2.c}}
+\doxysubsubsection{\texorpdfstring{Tecla2()}{Tecla2()}}
+{\footnotesize\ttfamily \label{_g2___ejer__2_8c_aab4aa84a51d1ae0bc3198a14fd573653} 
+void Tecla2 (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameter}{}\end{DoxyParamCaption})}
+
+
+
+Función de servicio de interrupción asignada al SWITCH\+\_\+2. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pv\+Parameter} & Puntero a parámetros (no utilizado). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__2_8c_source_l00162}{162}} del archivo \doxymbox{\hyperlink{_g2___ejer__2_8c_source}{G2\+\_\+\+Ejer\+\_\+2.\+c}}.
+
+\Hypertarget{_g2___ejer__2_8c_ad68dd071e4a9747b073f3b9324745fa6}\index{G2\_Ejer\_2.c@{G2\_Ejer\_2.c}!toggle@{toggle}}
+\index{toggle@{toggle}!G2\_Ejer\_2.c@{G2\_Ejer\_2.c}}
+\doxysubsubsection{\texorpdfstring{toggle()}{toggle()}}
+{\footnotesize\ttfamily \label{_g2___ejer__2_8c_ad68dd071e4a9747b073f3b9324745fa6} 
+void toggle (\begin{DoxyParamCaption}\item[{bool \texorpdfstring{$\ast$}{*}}]{al}{}\end{DoxyParamCaption})}
+
+
+
+Alterna el valor booleano de una variable apuntada por el parámetro. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em al} & Puntero a la variable booleana que se desea conmutar. \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__2_8c_source_l00149}{149}} del archivo \doxymbox{\hyperlink{_g2___ejer__2_8c_source}{G2\+\_\+\+Ejer\+\_\+2.\+c}}.
+
+
+
+\label{_g2___ejer__2_8c_doc-var-members}
+\Hypertarget{_g2___ejer__2_8c_doc-var-members}
+\doxysubsection{Documentación de variables}
+\Hypertarget{_g2___ejer__2_8c_aec40b15ff3098bdb2425eb4dc9c11a18}\index{G2\_Ejer\_2.c@{G2\_Ejer\_2.c}!distancia@{distancia}}
+\index{distancia@{distancia}!G2\_Ejer\_2.c@{G2\_Ejer\_2.c}}
+\doxysubsubsection{\texorpdfstring{distancia}{distancia}}
+{\footnotesize\ttfamily \label{_g2___ejer__2_8c_aec40b15ff3098bdb2425eb4dc9c11a18} 
+uint16\+\_\+t distancia = 0}
+
+
+
+Variable global que almacena el valor actual de la distancia medida en centímetros. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__2_8c_source_l00070}{70}} del archivo \doxymbox{\hyperlink{_g2___ejer__2_8c_source}{G2\+\_\+\+Ejer\+\_\+2.\+c}}.
+
+\Hypertarget{_g2___ejer__2_8c_a66eb34a4e5e5fb8142a3471180198b3c}\index{G2\_Ejer\_2.c@{G2\_Ejer\_2.c}!mantener@{mantener}}
+\index{mantener@{mantener}!G2\_Ejer\_2.c@{G2\_Ejer\_2.c}}
+\doxysubsubsection{\texorpdfstring{mantener}{mantener}}
+{\footnotesize\ttfamily \label{_g2___ejer__2_8c_a66eb34a4e5e5fb8142a3471180198b3c} 
+bool mantener = false}
+
+
+
+Estado de congelación de pantalla (true = mantener último valor, false = actualizar). 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__2_8c_source_l00067}{67}} del archivo \doxymbox{\hyperlink{_g2___ejer__2_8c_source}{G2\+\_\+\+Ejer\+\_\+2.\+c}}.
+
+\Hypertarget{_g2___ejer__2_8c_ac775c51d06b43d7dcf5458c6864f9577}\index{G2\_Ejer\_2.c@{G2\_Ejer\_2.c}!Medir\_task\_handle@{Medir\_task\_handle}}
+\index{Medir\_task\_handle@{Medir\_task\_handle}!G2\_Ejer\_2.c@{G2\_Ejer\_2.c}}
+\doxysubsubsection{\texorpdfstring{Medir\_task\_handle}{Medir\_task\_handle}}
+{\footnotesize\ttfamily \label{_g2___ejer__2_8c_ac775c51d06b43d7dcf5458c6864f9577} 
+Task\+Handle\+\_\+t Medir\+\_\+task\+\_\+handle = NULL}
+
+
+
+Handle para la tarea encargada de realizar las mediciones de distancia. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__2_8c_source_l00061}{61}} del archivo \doxymbox{\hyperlink{_g2___ejer__2_8c_source}{G2\+\_\+\+Ejer\+\_\+2.\+c}}.
+
+\Hypertarget{_g2___ejer__2_8c_a2697c9427db0ca0ce43f563949c84da9}\index{G2\_Ejer\_2.c@{G2\_Ejer\_2.c}!Mostrar\_task\_handle@{Mostrar\_task\_handle}}
+\index{Mostrar\_task\_handle@{Mostrar\_task\_handle}!G2\_Ejer\_2.c@{G2\_Ejer\_2.c}}
+\doxysubsubsection{\texorpdfstring{Mostrar\_task\_handle}{Mostrar\_task\_handle}}
+{\footnotesize\ttfamily \label{_g2___ejer__2_8c_a2697c9427db0ca0ce43f563949c84da9} 
+Task\+Handle\+\_\+t Mostrar\+\_\+task\+\_\+handle = NULL}
+
+
+
+Handle para la tarea encargada de mostrar la información en leds y pantalla. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__2_8c_source_l00058}{58}} del archivo \doxymbox{\hyperlink{_g2___ejer__2_8c_source}{G2\+\_\+\+Ejer\+\_\+2.\+c}}.
+
+\Hypertarget{_g2___ejer__2_8c_a3875f2da97e41ea8543af2b772e50133}\index{G2\_Ejer\_2.c@{G2\_Ejer\_2.c}!prender@{prender}}
+\index{prender@{prender}!G2\_Ejer\_2.c@{G2\_Ejer\_2.c}}
+\doxysubsubsection{\texorpdfstring{prender}{prender}}
+{\footnotesize\ttfamily \label{_g2___ejer__2_8c_a3875f2da97e41ea8543af2b772e50133} 
+bool prender = true}
+
+
+
+Estado del sistema (true = encendido / encender mediciones, false = apagado). 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__2_8c_source_l00064}{64}} del archivo \doxymbox{\hyperlink{_g2___ejer__2_8c_source}{G2\+\_\+\+Ejer\+\_\+2.\+c}}.
+

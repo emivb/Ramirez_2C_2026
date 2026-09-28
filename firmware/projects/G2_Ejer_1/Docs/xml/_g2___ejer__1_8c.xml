@@ -1,0 +1,507 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="es">
+  <compounddef id="_g2___ejer__1_8c" kind="file" language="C++">
+    <compoundname>G2_Ejer_1.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes local="yes">freertos/FreeRTOS.h</includes>
+    <includes local="yes">freertos/task.h</includes>
+    <includes local="yes">led.h</includes>
+    <includes local="yes">lcditse0803.h</includes>
+    <includes local="yes">switch.h</includes>
+    <includes local="yes">hc_sr04.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c</label>
+        <link refid="_g2___ejer__1_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/task.h</label>
+      </node>
+      <node id="10">
+        <label>hc_sr04.h</label>
+      </node>
+      <node id="8">
+        <label>lcditse0803.h</label>
+      </node>
+      <node id="7">
+        <label>led.h</label>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="9">
+        <label>switch.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="_g2___ejer__1_8c_1af97daccf59623ad73d259a1f57f48e8b" prot="public" static="no">
+        <name>mostrar_delay</name>
+        <initializer>100</initializer>
+        <briefdescription>
+<para>Valor en milisegundos para el refresco del display LCD y leds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" line="42" column="9" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_g2___ejer__1_8c_1ad8ed67e2e164531e3388c541853e0503" prot="public" static="no">
+        <name>medir_delay</name>
+        <initializer>1000</initializer>
+        <briefdescription>
+<para>Valor en milisegundos para el tiempo entre cada medición de distancia. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" line="48" column="9" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="_g2___ejer__1_8c_1a019475a4e5a7a09d7c4c3e717ce4865e" prot="public" static="no">
+        <name>teclas_delay</name>
+        <initializer>200</initializer>
+        <briefdescription>
+<para>Valor en milisegundos para el intervalo de lectura del estado de las teclas/switches. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" line="54" column="9" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" bodystart="54" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="_g2___ejer__1_8c_1a2697c9427db0ca0ce43f563949c84da9" prot="public" static="no" mutable="no">
+        <type>TaskHandle_t</type>
+        <definition>TaskHandle_t Mostrar_task_handle</definition>
+        <argsstring></argsstring>
+        <name>Mostrar_task_handle</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+<para>Handle para la tarea encarga de mostrar la información en leds y pantalla. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" line="58" column="14" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_g2___ejer__1_8c_1ac775c51d06b43d7dcf5458c6864f9577" prot="public" static="no" mutable="no">
+        <type>TaskHandle_t</type>
+        <definition>TaskHandle_t Medir_task_handle</definition>
+        <argsstring></argsstring>
+        <name>Medir_task_handle</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+<para>Handle para la tarea encargada de realizar las mediciones de distancia. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" line="61" column="14" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_g2___ejer__1_8c_1a35a4da75cd10e8f444582987a492cc04" prot="public" static="no" mutable="no">
+        <type>TaskHandle_t</type>
+        <definition>TaskHandle_t Teclas_task_handle</definition>
+        <argsstring></argsstring>
+        <name>Teclas_task_handle</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+<para>Handle para la tarea encargada de leer el estado de las teclas. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" line="64" column="14" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_g2___ejer__1_8c_1a3875f2da97e41ea8543af2b772e50133" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool prender</definition>
+        <argsstring></argsstring>
+        <name>prender</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>Estado del sistema (true = encendido / encender mediciones, false = apagado). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" line="67" column="6" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_g2___ejer__1_8c_1a66eb34a4e5e5fb8142a3471180198b3c" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool mantener</definition>
+        <argsstring></argsstring>
+        <name>mantener</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Estado de congelación de pantalla (true = mantener último valor, false = actualizar). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" line="70" column="6" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_g2___ejer__1_8c_1aec40b15ff3098bdb2425eb4dc9c11a18" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t distancia</definition>
+        <argsstring></argsstring>
+        <name>distancia</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>Variable global que almacena el valor actual de la distancia medida en centímetros. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" line="73" column="10" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" bodystart="73" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_g2___ejer__1_8c_1a970365c016042696a7ad9d75aac45d64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void apagartodo</definition>
+        <argsstring>(void)</argsstring>
+        <name>apagartodo</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Apaga todos los leds y limpia la pantalla LCD. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" line="106" column="6" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" bodystart="106" bodyend="111" declfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" declline="79" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_g2___ejer__1_8c_1a294b2640630c0906163bb26d35e88e3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Leds</definition>
+        <argsstring>(uint16_t dis)</argsstring>
+        <name>Leds</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>dis</declname>
+        </param>
+        <briefdescription>
+<para>Utiliza los Leds como si fuese un vúmetro de distancia en centímetros. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Configuración de encendido:<itemizedlist>
+<listitem><para>distancia &lt; 10 cm: Todos los leds apagados.</para>
+</listitem><listitem><para>10 cm &lt;= distancia &lt; 20 cm: LED_1 encendido.</para>
+</listitem><listitem><para>20 cm &lt;= distancia &lt; 30 cm: LED_1 y LED_2 encendidos.</para>
+</listitem><listitem><para>distancia &gt;= 30 cm: LED_1, LED_2 y LED_3 encendidos.</para>
+</listitem></itemizedlist>
+</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Distancia medida en centímetros. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" line="113" column="6" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" bodystart="113" bodyend="137" declfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" declline="92" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_g2___ejer__1_8c_1ad68dd071e4a9747b073f3b9324745fa6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void toggle</definition>
+        <argsstring>(bool *al)</argsstring>
+        <name>toggle</name>
+        <param>
+          <type>bool *</type>
+          <declname>al</declname>
+        </param>
+        <briefdescription>
+<para>Alterna el valor booleano de una variable apuntada por el parámetro. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>al</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Puntero a la variable booleana que se desea conmutar. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" line="139" column="6" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" bodystart="139" bodyend="145" declfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" declline="99" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_g2___ejer__1_8c_1ab4eb0b6177a9800fafe0051ce3c7bd93" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Mostrar_task</definition>
+        <argsstring>(void *pvParameter)</argsstring>
+        <name>Mostrar_task</name>
+        <param>
+          <type>void *</type>
+          <declname>pvParameter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" line="147" column="13" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" bodystart="147" bodyend="166" declfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" declline="101" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="_g2___ejer__1_8c_1a1ec4cc60b342bf45fde248f92a1daa50" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Teclas_task</definition>
+        <argsstring>(void *pvParameter)</argsstring>
+        <name>Teclas_task</name>
+        <param>
+          <type>void *</type>
+          <declname>pvParameter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" line="168" column="13" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" bodystart="168" bodyend="184" declfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" declline="102" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="_g2___ejer__1_8c_1a33a2361b72a3e11421c7b98600e7f600" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Medir_task</definition>
+        <argsstring>(void *pvParameter)</argsstring>
+        <name>Medir_task</name>
+        <param>
+          <type>void *</type>
+          <declname>pvParameter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" line="186" column="13" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" bodystart="186" bodyend="198" declfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" declline="103" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="_g2___ejer__1_8c_1a630544a7f0a2cc40d8a7fefab7e2fe70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void app_main</definition>
+        <argsstring>(void)</argsstring>
+        <name>app_main</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Función principal de la aplicación. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" line="204" column="6" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" bodystart="204" bodyend="216"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Aplicación de medición de distancia con sensor HC-SR04, display LCD y LEDs mediante FreeRTOS. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">/*==================[inclusions]=============================================*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/FreeRTOS.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/task.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;led.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;lcditse0803.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;switch.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;hc_sr04.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">/*==================[macros<sp/>and<sp/>definitions]=================================*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="_g2___ejer__1_8c_1af97daccf59623ad73d259a1f57f48e8b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>mostrar_delay<sp/>100</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="_g2___ejer__1_8c_1ad8ed67e2e164531e3388c541853e0503" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>medir_delay<sp/>1000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="_g2___ejer__1_8c_1a019475a4e5a7a09d7c4c3e717ce4865e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>teclas_delay<sp/>200</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">/*==================[internal<sp/>data<sp/>definition]===============================*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="_g2___ejer__1_8c_1a2697c9427db0ca0ce43f563949c84da9" refkind="member"><highlight class="normal">TaskHandle_t<sp/><ref refid="_g2___ejer__1_8c_1a2697c9427db0ca0ce43f563949c84da9" kindref="member">Mostrar_task_handle</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="_g2___ejer__1_8c_1ac775c51d06b43d7dcf5458c6864f9577" refkind="member"><highlight class="normal">TaskHandle_t<sp/><ref refid="_g2___ejer__1_8c_1ac775c51d06b43d7dcf5458c6864f9577" kindref="member">Medir_task_handle</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="_g2___ejer__1_8c_1a35a4da75cd10e8f444582987a492cc04" refkind="member"><highlight class="normal">TaskHandle_t<sp/><ref refid="_g2___ejer__1_8c_1a35a4da75cd10e8f444582987a492cc04" kindref="member">Teclas_task_handle</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="_g2___ejer__1_8c_1a3875f2da97e41ea8543af2b772e50133" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__1_8c_1a3875f2da97e41ea8543af2b772e50133" kindref="member">prender</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="_g2___ejer__1_8c_1a66eb34a4e5e5fb8142a3471180198b3c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__1_8c_1a66eb34a4e5e5fb8142a3471180198b3c" kindref="member">mantener</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="_g2___ejer__1_8c_1aec40b15ff3098bdb2425eb4dc9c11a18" refkind="member"><highlight class="normal">uint16_t<sp/><ref refid="_g2___ejer__1_8c_1aec40b15ff3098bdb2425eb4dc9c11a18" kindref="member">distancia</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">/*==================[internal<sp/>functions<sp/>declaration]=========================*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__1_8c_1a970365c016042696a7ad9d75aac45d64" kindref="member">apagartodo</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__1_8c_1a294b2640630c0906163bb26d35e88e3a" kindref="member">Leds</ref>(uint16_t<sp/>dis);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__1_8c_1ad68dd071e4a9747b073f3b9324745fa6" kindref="member">toggle</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>*al);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Mostrar_task(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*pvParameter);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Teclas_task(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*pvParameter);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Medir_task(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*pvParameter);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="comment">/*==================[internal<sp/>functions<sp/>definition]==========================*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="_g2___ejer__1_8c_1a970365c016042696a7ad9d75aac45d64" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__1_8c_1a970365c016042696a7ad9d75aac45d64" kindref="member">apagartodo</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>LedsOffAll();</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>LcdItsE0803Off();</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Todo<sp/>apagado\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113" refid="_g2___ejer__1_8c_1a294b2640630c0906163bb26d35e88e3a" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__1_8c_1a294b2640630c0906163bb26d35e88e3a" kindref="member">Leds</ref>(uint16_t<sp/>dis)</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dis<sp/>&gt;=<sp/>10<sp/>&amp;&amp;<sp/>dis<sp/>&lt;<sp/>20)</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LedOn(LED_1);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LedOff(LED_2);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LedOff(LED_3);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dis<sp/>&gt;=<sp/>20<sp/>&amp;&amp;<sp/>dis<sp/>&lt;<sp/>30)</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LedOn(LED_1);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LedOn(LED_2);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LedOff(LED_3);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dis<sp/>&gt;=<sp/>30)</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LedOn(LED_1);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LedOn(LED_2);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LedOn(LED_3);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LedsOffAll();</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139" refid="_g2___ejer__1_8c_1ad68dd071e4a9747b073f3b9324745fa6" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__1_8c_1ad68dd071e4a9747b073f3b9324745fa6" kindref="member">toggle</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>*al)</highlight></codeline>
+<codeline lineno="140"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(al<sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*al<sp/>=<sp/>!(*al);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Mostrar_task(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*pvParameter)</highlight></codeline>
+<codeline lineno="148"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(</highlight><highlight class="keyword">true</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_g2___ejer__1_8c_1a3875f2da97e41ea8543af2b772e50133" kindref="member">prender</ref>)</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_g2___ejer__1_8c_1a294b2640630c0906163bb26d35e88e3a" kindref="member">Leds</ref>(<ref refid="_g2___ejer__1_8c_1aec40b15ff3098bdb2425eb4dc9c11a18" kindref="member">distancia</ref>);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="_g2___ejer__1_8c_1a66eb34a4e5e5fb8142a3471180198b3c" kindref="member">mantener</ref>)</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LcdItsE0803Write(<ref refid="_g2___ejer__1_8c_1aec40b15ff3098bdb2425eb4dc9c11a18" kindref="member">distancia</ref>);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_g2___ejer__1_8c_1a970365c016042696a7ad9d75aac45d64" kindref="member">apagartodo</ref>();</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vTaskDelay(<ref refid="_g2___ejer__1_8c_1af97daccf59623ad73d259a1f57f48e8b" kindref="member">mostrar_delay</ref><sp/>/<sp/>portTICK_PERIOD_MS);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="166"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Teclas_task(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*pvParameter)</highlight></codeline>
+<codeline lineno="169"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(</highlight><highlight class="keyword">true</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>teclas<sp/>=<sp/>SwitchesRead();</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(teclas<sp/>==<sp/>SWITCH_1)</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_g2___ejer__1_8c_1ad68dd071e4a9747b073f3b9324745fa6" kindref="member">toggle</ref>(&amp;<ref refid="_g2___ejer__1_8c_1a3875f2da97e41ea8543af2b772e50133" kindref="member">prender</ref>);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(teclas<sp/>==<sp/>SWITCH_2)</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_g2___ejer__1_8c_1ad68dd071e4a9747b073f3b9324745fa6" kindref="member">toggle</ref>(&amp;<ref refid="_g2___ejer__1_8c_1a66eb34a4e5e5fb8142a3471180198b3c" kindref="member">mantener</ref>);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vTaskDelay(<ref refid="_g2___ejer__1_8c_1a019475a4e5a7a09d7c4c3e717ce4865e" kindref="member">teclas_delay</ref><sp/>/<sp/>portTICK_PERIOD_MS);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="184"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Medir_task(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*pvParameter)</highlight></codeline>
+<codeline lineno="187"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(</highlight><highlight class="keyword">true</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_g2___ejer__1_8c_1a3875f2da97e41ea8543af2b772e50133" kindref="member">prender</ref>)</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_g2___ejer__1_8c_1aec40b15ff3098bdb2425eb4dc9c11a18" kindref="member">distancia</ref><sp/>=<sp/>HcSr04ReadDistanceInCentimeters();</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Distancia:<sp/>%d<sp/>cm\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="_g2___ejer__1_8c_1aec40b15ff3098bdb2425eb4dc9c11a18" kindref="member">distancia</ref>);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vTaskDelay(<ref refid="_g2___ejer__1_8c_1ad8ed67e2e164531e3388c541853e0503" kindref="member">medir_delay</ref><sp/>/<sp/>portTICK_PERIOD_MS);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight><highlight class="comment">/*==================[external<sp/>functions<sp/>definition]==========================*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="204" refid="_g2___ejer__1_8c_1a630544a7f0a2cc40d8a7fefab7e2fe70" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__1_8c_1a630544a7f0a2cc40d8a7fefab7e2fe70" kindref="member">app_main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="205"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Inicialización<sp/>de<sp/>periféricos<sp/>y<sp/>sensores<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>LedsInit();</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>LcdItsE0803Init();</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>SwitchesInit();</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>HcSr04Init(GPIO_3,<sp/>GPIO_2);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Creación<sp/>de<sp/>tareas<sp/>de<sp/>FreeRTOS<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/>xTaskCreate(Mostrar_task,<sp/></highlight><highlight class="stringliteral">&quot;Mostrar_task&quot;</highlight><highlight class="normal">,<sp/>2048,<sp/>NULL,<sp/>5,<sp/>&amp;<ref refid="_g2___ejer__1_8c_1a2697c9427db0ca0ce43f563949c84da9" kindref="member">Mostrar_task_handle</ref>);</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>xTaskCreate(Teclas_task,<sp/><sp/></highlight><highlight class="stringliteral">&quot;Teclas_task&quot;</highlight><highlight class="normal">,<sp/><sp/>2048,<sp/>NULL,<sp/>5,<sp/>&amp;<ref refid="_g2___ejer__1_8c_1a35a4da75cd10e8f444582987a492cc04" kindref="member">Teclas_task_handle</ref>);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>xTaskCreate(Medir_task,<sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Medir_task&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/>2048,<sp/>NULL,<sp/>5,<sp/>&amp;<ref refid="_g2___ejer__1_8c_1ac775c51d06b43d7dcf5458c6864f9577" kindref="member">Medir_task_handle</ref>);</highlight></codeline>
+<codeline lineno="216"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c"/>
+  </compounddef>
+</doxygen>

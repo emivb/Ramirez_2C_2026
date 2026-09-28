@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="es">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>G2_Ejer_1</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="index_1genDesc">
+<title>Descripción General</title><para>Este proyecto realiza la medición de distancia utilizando el sensor ultrasónico HC-SR04, mostrando el resultado en un display LCD (ITSE0803) y representando rangos de distancia mediante leds en modo barómetro (vúmetro). Además, permite controlar el encendido/apagado del sistema y la retención del valor mediante switches.</para>
+</sect1>
+<sect1 id="index_1changelog">
+<title>Historial de Cambios</title><para><table rows="4" cols="2"><row>
+<entry thead="yes" align='center'><para>Fecha  </para>
+</entry><entry thead="yes" align='left'><para>Descripción  </para>
+</entry></row>
+<row>
+<entry thead="no" align='center'><para>03/09/2026  </para>
+</entry><entry thead="no" align='left'><para>Creación del documento  </para>
+</entry></row>
+<row>
+<entry thead="no" align='center'><para>10/09/2026  </para>
+</entry><entry thead="no" align='left'><para>Finalizacion del proyecto  </para>
+</entry></row>
+<row>
+<entry thead="no" align='center'><para>28/09/2026  </para>
+</entry><entry thead="no" align='left'><para>Corrección de formato Doxygen  </para>
+</entry></row>
+</table>
+</para>
+<para><simplesect kind="author"><para>Emiliano Ramirez </para>
+</simplesect>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c"/>
+  </compounddef>
+</doxygen>

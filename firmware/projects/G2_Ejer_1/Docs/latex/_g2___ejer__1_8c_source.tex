@@ -1,0 +1,159 @@
+\doxysection{G2\+\_\+\+Ejer\+\_\+1.\+c}
+\hypertarget{_g2___ejer__1_8c_source}{}\label{_g2___ejer__1_8c_source}\index{C:/Users/Emi/Documents/Repositorios/Ramirez\_2C\_2026/firmware/projects/G2\_Ejer\_1/main/G2\_Ejer\_1.c@{C:/Users/Emi/Documents/Repositorios/Ramirez\_2C\_2026/firmware/projects/G2\_Ejer\_1/main/G2\_Ejer\_1.c}}
+\doxymbox{\hyperlink{_g2___ejer__1_8c}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00026}00026\ \textcolor{comment}{/*==================[inclusions]=============================================*/}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00027}00027\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00028}00028\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00029}00029\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00030}00030\ \textcolor{preprocessor}{\#include\ "{}freertos/FreeRTOS.h"{}}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00031}00031\ \textcolor{preprocessor}{\#include\ "{}freertos/task.h"{}}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}led.h"{}}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00033}00033\ \textcolor{preprocessor}{\#include\ "{}lcditse0803.h"{}}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00034}00034\ \textcolor{preprocessor}{\#include\ "{}switch.h"{}}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00035}00035\ \textcolor{preprocessor}{\#include\ "{}hc\_sr04.h"{}}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00037}00037\ \textcolor{comment}{/*==================[macros\ and\ definitions]=================================*/}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00042}\doxymbox{\hyperlink{_g2___ejer__1_8c_af97daccf59623ad73d259a1f57f48e8b}{00042}}\ \textcolor{preprocessor}{\#define\ mostrar\_delay\ 100}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00048}\doxymbox{\hyperlink{_g2___ejer__1_8c_ad8ed67e2e164531e3388c541853e0503}{00048}}\ \textcolor{preprocessor}{\#define\ medir\_delay\ 1000}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00054}\doxymbox{\hyperlink{_g2___ejer__1_8c_a019475a4e5a7a09d7c4c3e717ce4865e}{00054}}\ \textcolor{preprocessor}{\#define\ teclas\_delay\ 200}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00056}00056\ \textcolor{comment}{/*==================[internal\ data\ definition]===============================*/}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00058}\doxymbox{\hyperlink{_g2___ejer__1_8c_a2697c9427db0ca0ce43f563949c84da9}{00058}}\ TaskHandle\_t\ \doxymbox{\hyperlink{_g2___ejer__1_8c_a2697c9427db0ca0ce43f563949c84da9}{Mostrar\_task\_handle}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00061}\doxymbox{\hyperlink{_g2___ejer__1_8c_ac775c51d06b43d7dcf5458c6864f9577}{00061}}\ TaskHandle\_t\ \doxymbox{\hyperlink{_g2___ejer__1_8c_ac775c51d06b43d7dcf5458c6864f9577}{Medir\_task\_handle}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00064}\doxymbox{\hyperlink{_g2___ejer__1_8c_a35a4da75cd10e8f444582987a492cc04}{00064}}\ TaskHandle\_t\ \doxymbox{\hyperlink{_g2___ejer__1_8c_a35a4da75cd10e8f444582987a492cc04}{Teclas\_task\_handle}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00067}\doxymbox{\hyperlink{_g2___ejer__1_8c_a3875f2da97e41ea8543af2b772e50133}{00067}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{_g2___ejer__1_8c_a3875f2da97e41ea8543af2b772e50133}{prender}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00070}\doxymbox{\hyperlink{_g2___ejer__1_8c_a66eb34a4e5e5fb8142a3471180198b3c}{00070}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{_g2___ejer__1_8c_a66eb34a4e5e5fb8142a3471180198b3c}{mantener}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00073}\doxymbox{\hyperlink{_g2___ejer__1_8c_aec40b15ff3098bdb2425eb4dc9c11a18}{00073}}\ uint16\_t\ \doxymbox{\hyperlink{_g2___ejer__1_8c_aec40b15ff3098bdb2425eb4dc9c11a18}{distancia}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00075}00075\ \textcolor{comment}{/*==================[internal\ functions\ declaration]=========================*/}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00079}00079\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_g2___ejer__1_8c_a970365c016042696a7ad9d75aac45d64}{apagartodo}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00092}00092\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_g2___ejer__1_8c_a294b2640630c0906163bb26d35e88e3a}{Leds}}(uint16\_t\ dis);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00099}00099\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_g2___ejer__1_8c_ad68dd071e4a9747b073f3b9324745fa6}{toggle}}(\textcolor{keywordtype}{bool}\ *al);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00101}00101\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Mostrar\_task(\textcolor{keywordtype}{void}\ *pvParameter);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00102}00102\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Teclas\_task(\textcolor{keywordtype}{void}\ *pvParameter);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00103}00103\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Medir\_task(\textcolor{keywordtype}{void}\ *pvParameter);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00105}00105\ \textcolor{comment}{/*==================[internal\ functions\ definition]==========================*/}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00106}\doxymbox{\hyperlink{_g2___ejer__1_8c_a970365c016042696a7ad9d75aac45d64}{00106}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_g2___ejer__1_8c_a970365c016042696a7ad9d75aac45d64}{apagartodo}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00107}00107\ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00108}00108\ \ \ \ \ LedsOffAll();}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00109}00109\ \ \ \ \ LcdItsE0803Off();}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00110}00110\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Todo\ apagado\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00111}00111\ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00113}\doxymbox{\hyperlink{_g2___ejer__1_8c_a294b2640630c0906163bb26d35e88e3a}{00113}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_g2___ejer__1_8c_a294b2640630c0906163bb26d35e88e3a}{Leds}}(uint16\_t\ dis)}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00114}00114\ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00115}00115\ \ \ \ \ \textcolor{keywordflow}{if}\ (dis\ >=\ 10\ \&\&\ dis\ <\ 20)}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00116}00116\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00117}00117\ \ \ \ \ \ \ \ \ LedOn(LED\_1);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00118}00118\ \ \ \ \ \ \ \ \ LedOff(LED\_2);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00119}00119\ \ \ \ \ \ \ \ \ LedOff(LED\_3);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00120}00120\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00121}00121\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (dis\ >=\ 20\ \&\&\ dis\ <\ 30)}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00122}00122\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00123}00123\ \ \ \ \ \ \ \ \ LedOn(LED\_1);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00124}00124\ \ \ \ \ \ \ \ \ LedOn(LED\_2);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00125}00125\ \ \ \ \ \ \ \ \ LedOff(LED\_3);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00126}00126\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00127}00127\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (dis\ >=\ 30)}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00128}00128\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00129}00129\ \ \ \ \ \ \ \ \ LedOn(LED\_1);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00130}00130\ \ \ \ \ \ \ \ \ LedOn(LED\_2);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00131}00131\ \ \ \ \ \ \ \ \ LedOn(LED\_3);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00132}00132\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00133}00133\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00134}00134\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00135}00135\ \ \ \ \ \ \ \ \ LedsOffAll();}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00136}00136\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00137}00137\ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00139}\doxymbox{\hyperlink{_g2___ejer__1_8c_ad68dd071e4a9747b073f3b9324745fa6}{00139}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_g2___ejer__1_8c_ad68dd071e4a9747b073f3b9324745fa6}{toggle}}(\textcolor{keywordtype}{bool}\ *al)}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00140}00140\ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00141}00141\ \ \ \ \ \textcolor{keywordflow}{if}\ (al\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00142}00142\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00143}00143\ \ \ \ \ \ \ \ \ *al\ =\ !(*al);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00144}00144\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00145}00145\ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00147}00147\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Mostrar\_task(\textcolor{keywordtype}{void}\ *pvParameter)}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00148}00148\ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00149}00149\ \ \ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00150}00150\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00151}00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{_g2___ejer__1_8c_a3875f2da97e41ea8543af2b772e50133}{prender}})}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00152}00152\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{_g2___ejer__1_8c_a294b2640630c0906163bb26d35e88e3a}{Leds}}(\doxymbox{\hyperlink{_g2___ejer__1_8c_aec40b15ff3098bdb2425eb4dc9c11a18}{distancia}});}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{_g2___ejer__1_8c_a66eb34a4e5e5fb8142a3471180198b3c}{mantener}})}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LcdItsE0803Write(\doxymbox{\hyperlink{_g2___ejer__1_8c_aec40b15ff3098bdb2425eb4dc9c11a18}{distancia}});}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00158}00158\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00160}00160\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{_g2___ejer__1_8c_a970365c016042696a7ad9d75aac45d64}{apagartodo}}();}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00162}00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00163}00163\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00164}00164\ \ \ \ \ \ \ \ \ vTaskDelay(\doxymbox{\hyperlink{_g2___ejer__1_8c_af97daccf59623ad73d259a1f57f48e8b}{mostrar\_delay}}\ /\ portTICK\_PERIOD\_MS);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00165}00165\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00166}00166\ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00168}00168\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Teclas\_task(\textcolor{keywordtype}{void}\ *pvParameter)}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00169}00169\ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00170}00170\ \ \ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00171}00171\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00172}00172\ \ \ \ \ \ \ \ \ uint8\_t\ teclas\ =\ SwitchesRead();}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00173}00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (teclas\ ==\ SWITCH\_1)}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00174}00174\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{_g2___ejer__1_8c_ad68dd071e4a9747b073f3b9324745fa6}{toggle}}(\&\doxymbox{\hyperlink{_g2___ejer__1_8c_a3875f2da97e41ea8543af2b772e50133}{prender}});}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00176}00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00177}00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (teclas\ ==\ SWITCH\_2)}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00178}00178\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{_g2___ejer__1_8c_ad68dd071e4a9747b073f3b9324745fa6}{toggle}}(\&\doxymbox{\hyperlink{_g2___ejer__1_8c_a66eb34a4e5e5fb8142a3471180198b3c}{mantener}});}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00180}00180\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00181}00181\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00182}00182\ \ \ \ \ \ \ \ \ vTaskDelay(\doxymbox{\hyperlink{_g2___ejer__1_8c_a019475a4e5a7a09d7c4c3e717ce4865e}{teclas\_delay}}\ /\ portTICK\_PERIOD\_MS);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00183}00183\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00184}00184\ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00186}00186\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Medir\_task(\textcolor{keywordtype}{void}\ *pvParameter)}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00187}00187\ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00188}00188\ \ \ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00189}00189\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00190}00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{_g2___ejer__1_8c_a3875f2da97e41ea8543af2b772e50133}{prender}})}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00191}00191\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{_g2___ejer__1_8c_aec40b15ff3098bdb2425eb4dc9c11a18}{distancia}}\ =\ HcSr04ReadDistanceInCentimeters();}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Distancia:\ \%d\ cm\(\backslash\)n"{}},\ \doxymbox{\hyperlink{_g2___ejer__1_8c_aec40b15ff3098bdb2425eb4dc9c11a18}{distancia}});}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00194}00194\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00195}00195\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00196}00196\ \ \ \ \ \ \ \ \ vTaskDelay(\doxymbox{\hyperlink{_g2___ejer__1_8c_ad8ed67e2e164531e3388c541853e0503}{medir\_delay}}\ /\ portTICK\_PERIOD\_MS);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00197}00197\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00198}00198\ \}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00200}00200\ \textcolor{comment}{/*==================[external\ functions\ definition]==========================*/}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00204}\doxymbox{\hyperlink{_g2___ejer__1_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}{00204}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_g2___ejer__1_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}{app\_main}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00205}00205\ \{}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00206}00206\ \ \ \ \ \textcolor{comment}{/*\ Inicialización\ de\ periféricos\ y\ sensores\ */}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00207}00207\ \ \ \ \ LedsInit();}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00208}00208\ \ \ \ \ LcdItsE0803Init();}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00209}00209\ \ \ \ \ SwitchesInit();}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00210}00210\ \ \ \ \ HcSr04Init(GPIO\_3,\ GPIO\_2);}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00211}00211\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00212}00212\ \ \ \ \ \textcolor{comment}{/*\ Creación\ de\ tareas\ de\ FreeRTOS\ */}}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00213}00213\ \ \ \ \ xTaskCreate(Mostrar\_task,\ \textcolor{stringliteral}{"{}Mostrar\_task"{}},\ 2048,\ NULL,\ 5,\ \&\doxymbox{\hyperlink{_g2___ejer__1_8c_a2697c9427db0ca0ce43f563949c84da9}{Mostrar\_task\_handle}});}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00214}00214\ \ \ \ \ xTaskCreate(Teclas\_task,\ \ \textcolor{stringliteral}{"{}Teclas\_task"{}},\ \ 2048,\ NULL,\ 5,\ \&\doxymbox{\hyperlink{_g2___ejer__1_8c_a35a4da75cd10e8f444582987a492cc04}{Teclas\_task\_handle}});}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00215}00215\ \ \ \ \ xTaskCreate(Medir\_task,\ \ \ \textcolor{stringliteral}{"{}Medir\_task"{}},\ \ \ 2048,\ NULL,\ 5,\ \&\doxymbox{\hyperlink{_g2___ejer__1_8c_ac775c51d06b43d7dcf5458c6864f9577}{Medir\_task\_handle}});}
+\DoxyCodeLine{\Hypertarget{_g2___ejer__1_8c_source_l00216}00216\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,210 @@
+.TH "C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c" 3 "Version 1.0" "G2_Ejer_1" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_1/main/G2_Ejer_1.c \- Aplicación de medición de distancia con sensor HC-SR04, display LCD y LEDs mediante FreeRTOS\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <stdio\&.h>\fP
+.br
+\fR#include <stdint\&.h>\fP
+.br
+\fR#include <stdbool\&.h>\fP
+.br
+\fR#include 'freertos/FreeRTOS\&.h'\fP
+.br
+\fR#include 'freertos/task\&.h'\fP
+.br
+\fR#include 'led\&.h'\fP
+.br
+\fR#include 'lcditse0803\&.h'\fP
+.br
+\fR#include 'switch\&.h'\fP
+.br
+\fR#include 'hc_sr04\&.h'\fP
+.br
+
+.SS "defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBmostrar_delay\fP   100"
+.br
+.RI "Valor en milisegundos para el refresco del display LCD y leds\&. "
+.ti -1c
+.RI "#define \fBmedir_delay\fP   1000"
+.br
+.RI "Valor en milisegundos para el tiempo entre cada medición de distancia\&. "
+.ti -1c
+.RI "#define \fBteclas_delay\fP   200"
+.br
+.RI "Valor en milisegundos para el intervalo de lectura del estado de las teclas/switches\&. "
+.in -1c
+.SS "Funciones"
+
+.in +1c
+.ti -1c
+.RI "void \fBapagartodo\fP (void)"
+.br
+.RI "Apaga todos los leds y limpia la pantalla LCD\&. "
+.ti -1c
+.RI "void \fBLeds\fP (uint16_t dis)"
+.br
+.RI "Utiliza los Leds como si fuese un vúmetro de distancia en centímetros\&. "
+.ti -1c
+.RI "void \fBtoggle\fP (bool *al)"
+.br
+.RI "Alterna el valor booleano de una variable apuntada por el parámetro\&. "
+.ti -1c
+.RI "void \fBapp_main\fP (void)"
+.br
+.RI "Función principal de la aplicación\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "TaskHandle_t \fBMostrar_task_handle\fP = NULL"
+.br
+.RI "Handle para la tarea encarga de mostrar la información en leds y pantalla\&. "
+.ti -1c
+.RI "TaskHandle_t \fBMedir_task_handle\fP = NULL"
+.br
+.RI "Handle para la tarea encargada de realizar las mediciones de distancia\&. "
+.ti -1c
+.RI "TaskHandle_t \fBTeclas_task_handle\fP = NULL"
+.br
+.RI "Handle para la tarea encargada de leer el estado de las teclas\&. "
+.ti -1c
+.RI "bool \fBprender\fP = true"
+.br
+.RI "Estado del sistema (true = encendido / encender mediciones, false = apagado)\&. "
+.ti -1c
+.RI "bool \fBmantener\fP = false"
+.br
+.RI "Estado de congelación de pantalla (true = mantener último valor, false = actualizar)\&. "
+.ti -1c
+.RI "uint16_t \fBdistancia\fP = 0"
+.br
+.RI "Variable global que almacena el valor actual de la distancia medida en centímetros\&. "
+.in -1c
+.SH "Descripción detallada"
+.PP 
+Aplicación de medición de distancia con sensor HC-SR04, display LCD y LEDs mediante FreeRTOS\&. 
+
+
+.PP
+Definición en el archivo \fBG2_Ejer_1\&.c\fP\&.
+.SH "Documentación de «define»"
+.PP 
+.SS "#define medir_delay   1000"
+
+.PP
+Valor en milisegundos para el tiempo entre cada medición de distancia\&. 
+.PP
+Definición en la línea \fB48\fP del archivo \fBG2_Ejer_1\&.c\fP\&.
+.SS "#define mostrar_delay   100"
+
+.PP
+Valor en milisegundos para el refresco del display LCD y leds\&. 
+.PP
+Definición en la línea \fB42\fP del archivo \fBG2_Ejer_1\&.c\fP\&.
+.SS "#define teclas_delay   200"
+
+.PP
+Valor en milisegundos para el intervalo de lectura del estado de las teclas/switches\&. 
+.PP
+Definición en la línea \fB54\fP del archivo \fBG2_Ejer_1\&.c\fP\&.
+.SH "Documentación de funciones"
+.PP 
+.SS "void apagartodo (void )"
+
+.PP
+Apaga todos los leds y limpia la pantalla LCD\&. 
+.PP
+Definición en la línea \fB106\fP del archivo \fBG2_Ejer_1\&.c\fP\&.
+.SS "void app_main (void )"
+
+.PP
+Función principal de la aplicación\&. 
+.PP
+Definición en la línea \fB204\fP del archivo \fBG2_Ejer_1\&.c\fP\&.
+.SS "void Leds (uint16_t dis)"
+
+.PP
+Utiliza los Leds como si fuese un vúmetro de distancia en centímetros\&. Configuración de encendido:
+.IP "\(bu" 2
+distancia < 10 cm: Todos los leds apagados\&.
+.IP "\(bu" 2
+10 cm <= distancia < 20 cm: LED_1 encendido\&.
+.IP "\(bu" 2
+20 cm <= distancia < 30 cm: LED_1 y LED_2 encendidos\&.
+.IP "\(bu" 2
+distancia >= 30 cm: LED_1, LED_2 y LED_3 encendidos\&.
+.PP
+
+.PP
+\fBParámetros\fP
+.RS 4
+\fIdis\fP Distancia medida en centímetros\&. 
+.RE
+.PP
+
+.PP
+Definición en la línea \fB113\fP del archivo \fBG2_Ejer_1\&.c\fP\&.
+.SS "void toggle (bool * al)"
+
+.PP
+Alterna el valor booleano de una variable apuntada por el parámetro\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIal\fP Puntero a la variable booleana que se desea conmutar\&. 
+.RE
+.PP
+
+.PP
+Definición en la línea \fB139\fP del archivo \fBG2_Ejer_1\&.c\fP\&.
+.SH "Documentación de variables"
+.PP 
+.SS "uint16_t distancia = 0"
+
+.PP
+Variable global que almacena el valor actual de la distancia medida en centímetros\&. 
+.PP
+Definición en la línea \fB73\fP del archivo \fBG2_Ejer_1\&.c\fP\&.
+.SS "bool mantener = false"
+
+.PP
+Estado de congelación de pantalla (true = mantener último valor, false = actualizar)\&. 
+.PP
+Definición en la línea \fB70\fP del archivo \fBG2_Ejer_1\&.c\fP\&.
+.SS "TaskHandle_t Medir_task_handle = NULL"
+
+.PP
+Handle para la tarea encargada de realizar las mediciones de distancia\&. 
+.PP
+Definición en la línea \fB61\fP del archivo \fBG2_Ejer_1\&.c\fP\&.
+.SS "TaskHandle_t Mostrar_task_handle = NULL"
+
+.PP
+Handle para la tarea encarga de mostrar la información en leds y pantalla\&. 
+.PP
+Definición en la línea \fB58\fP del archivo \fBG2_Ejer_1\&.c\fP\&.
+.SS "bool prender = true"
+
+.PP
+Estado del sistema (true = encendido / encender mediciones, false = apagado)\&. 
+.PP
+Definición en la línea \fB67\fP del archivo \fBG2_Ejer_1\&.c\fP\&.
+.SS "TaskHandle_t Teclas_task_handle = NULL"
+
+.PP
+Handle para la tarea encargada de leer el estado de las teclas\&. 
+.PP
+Definición en la línea \fB64\fP del archivo \fBG2_Ejer_1\&.c\fP\&.
+.SH "Autor"
+.PP 
+Generado automáticamente por Doxygen para G2_Ejer_1 del código fuente\&.
