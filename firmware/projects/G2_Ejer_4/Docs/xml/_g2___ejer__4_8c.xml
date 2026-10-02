@@ -1,0 +1,508 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="es">
+  <compounddef id="_g2___ejer__4_8c" kind="file" language="C++">
+    <compoundname>G2_Ejer_4.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes local="yes">freertos/FreeRTOS.h</includes>
+    <includes local="yes">freertos/task.h</includes>
+    <includes local="yes">uart_mcu.h</includes>
+    <includes local="yes">analog_io_mcu.h</includes>
+    <includes local="yes">timer_mcu.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c</label>
+        <link refid="_g2___ejer__4_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>analog_io_mcu.h</label>
+      </node>
+      <node id="5">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/task.h</label>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="9">
+        <label>timer_mcu.h</label>
+      </node>
+      <node id="7">
+        <label>uart_mcu.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="_g2___ejer__4_8c_1a6b20d41d6252e9871430c242cb1a56e7" prot="public" static="no">
+        <name>BUFFER_SIZE</name>
+        <initializer>231</initializer>
+        <briefdescription>
+<para>Tamaño del buffer de muestras de la señal ECG. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" line="41" column="9" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" bodystart="41" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="_g2___ejer__4_8c_1aaf8ed8dabdd9a767c071f18ae09c8081" prot="public" static="no" mutable="no">
+        <type>TaskHandle_t</type>
+        <definition>TaskHandle_t ConvertirAD_task_handle</definition>
+        <argsstring></argsstring>
+        <name>ConvertirAD_task_handle</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+<para>Handle para la tarea encargada de la conversión A/D y envío UART. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" line="51" column="14" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_g2___ejer__4_8c_1a25fb8b35adc6477c9ac522c477ffa8c8" prot="public" static="no" mutable="no">
+        <type>TaskHandle_t</type>
+        <definition>TaskHandle_t ConvertirDA_task_handle</definition>
+        <argsstring></argsstring>
+        <name>ConvertirDA_task_handle</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+<para>Handle para la tarea encargada de la conversión D/A (salida ECG). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" line="54" column="14" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_g2___ejer__4_8c_1a2c75b4f34726e9b7a8dd42ca7fa1d31d" prot="public" static="no" mutable="no">
+        <type>TaskHandle_t</type>
+        <definition>TaskHandle_t main_task_handle</definition>
+        <argsstring></argsstring>
+        <name>main_task_handle</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+<para>Handle para la tarea principal de la aplicación. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" line="57" column="14" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_g2___ejer__4_8c_1a6555bc6e0e12aed1d6d19dcd2128e508" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t valor</definition>
+        <argsstring></argsstring>
+        <name>valor</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>Variable global que almacena el valor leído del canal analógico ADC. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" line="60" column="10" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_g2___ejer__4_8c_1a722646142c6c78eb05f858c7cc5763ee" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t indice</definition>
+        <argsstring></argsstring>
+        <name>indice</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>Índice del buffer <computeroutput><ref refid="_g2___ejer__4_8c_1a2dafb8b8179af8e9f4cc4df3f588e42e" kindref="member">ecg</ref></computeroutput> para recorrer las muestras del electrocardiograma. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" line="63" column="10" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_g2___ejer__4_8c_1a22b7ae0bd628b770bfa68315fa000272" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t escribir</definition>
+        <argsstring></argsstring>
+        <name>escribir</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>Valor actual del buffer enviado a la salida analógica DAC. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" line="66" column="10" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_g2___ejer__4_8c_1a2dafb8b8179af8e9f4cc4df3f588e42e" prot="public" static="no" mutable="no">
+        <type>const char</type>
+        <definition>const char ecg[BUFFER_SIZE]</definition>
+        <argsstring>[BUFFER_SIZE]</argsstring>
+        <name>ecg</name>
+        <initializer>               = {
+    76, 77, 78, 77, 79, 86, 81, 76, 84, 93, 85, 80,
+    89, 95, 89, 85, 93, 98, 94, 88, 98, 105, 96, 91,
+    99, 105, 101, 96, 102, 106, 101, 96, 100, 107, 101,
+    94, 100, 104, 100, 91, 99, 103, 98, 91, 96, 105, 95,
+    88, 95, 100, 94, 85, 93, 99, 92, 84, 91, 96, 87, 80,
+    83, 92, 86, 78, 84, 89, 79, 73, 81, 83, 78, 70, 80, 82,
+    79, 69, 80, 82, 81, 70, 75, 81, 77, 74, 79, 83, 82, 72,
+    80, 87, 79, 76, 85, 95, 87, 81, 88, 93, 88, 84, 87, 94,
+    86, 82, 85, 94, 85, 82, 85, 95, 86, 83, 92, 99, 91, 88,
+    94, 98, 95, 90, 97, 105, 104, 94, 98, 114, 117, 124, 144,
+    180, 210, 236, 253, 227, 171, 99, 49, 34, 29, 43, 69, 89,
+    89, 90, 98, 107, 104, 98, 104, 110, 102, 98, 103, 111, 101,
+    94, 103, 108, 102, 95, 97, 106, 100, 92, 101, 103, 100, 94, 98,
+    103, 96, 90, 98, 103, 97, 90, 99, 104, 95, 90, 99, 104, 100, 93,
+    100, 106, 101, 93, 101, 105, 103, 96, 105, 112, 105, 99, 103, 108,
+    99, 96, 102, 106, 99, 90, 92, 100, 87, 80, 82, 88, 77, 69, 75, 79,
+    74, 67, 71, 78, 72, 67, 73, 81, 77, 71, 75, 84, 79, 77, 77, 76, 76,
+}</initializer>
+        <briefdescription>
+<para>Buffer digital con la forma de onda de un electrocardiograma (ECG). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" line="71" column="12" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" bodystart="71" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="variable" id="_g2___ejer__4_8c_1a2f7bb0a5f86a2b414817b05456859941" prot="public" static="no" mutable="no">
+        <type>serial_config_t</type>
+        <definition>serial_config_t my_uart</definition>
+        <argsstring></argsstring>
+        <name>my_uart</name>
+        <initializer>                        = {
+    .port      = UART_PC,
+    .baud_rate = 115200,
+    .func_p    = <ref refid="_g2___ejer__4_8c_1aaba2e8f31c90bf685b29ec01cd74aca2" kindref="member">Funcomunicacion</ref>,
+    .param_p   = NULL
+}</initializer>
+        <briefdescription>
+<para>Configuración del puerto serie UART para comunicación con la PC. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" line="92" column="17" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" bodystart="92" bodyend="97"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="_g2___ejer__4_8c_1aaba2e8f31c90bf685b29ec01cd74aca2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Funcomunicacion</definition>
+        <argsstring>(void *param)</argsstring>
+        <name>Funcomunicacion</name>
+        <param>
+          <type>void *</type>
+          <declname>param</declname>
+        </param>
+        <briefdescription>
+<para>Función de callback invocada al recibir datos por la interfaz UART. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>param</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Puntero a parámetros (no utilizado). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" line="118" column="6" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" bodystart="118" bodyend="120" declfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" declline="47" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_g2___ejer__4_8c_1afaccfed84cd1498a05ea04a65f1209b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FuncTimerA</definition>
+        <argsstring>(void *param)</argsstring>
+        <name>FuncTimerA</name>
+        <param>
+          <type>void *</type>
+          <declname>param</declname>
+        </param>
+        <briefdescription>
+<para>Función de servicio de interrupción (ISR) del Timer A. Notifica a la tarea de conversión A/D. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>param</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Puntero a parámetros (no utilizado). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" line="122" column="6" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" bodystart="122" bodyend="126" declfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" declline="105" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_g2___ejer__4_8c_1a5088c3325764095ca222dc78c328f466" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FuncTimerB</definition>
+        <argsstring>(void *param)</argsstring>
+        <name>FuncTimerB</name>
+        <param>
+          <type>void *</type>
+          <declname>param</declname>
+        </param>
+        <briefdescription>
+<para>Función de servicio de interrupción (ISR) del Timer B. Notifica a la tarea de conversión D/A. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>param</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Puntero a parámetros (no utilizado). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" line="128" column="6" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" bodystart="128" bodyend="132" declfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" declline="112" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_g2___ejer__4_8c_1a62e44f8c5dd57759dc6f3ca528765ce2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ConvertirAD_task</definition>
+        <argsstring>(void *pvParameter)</argsstring>
+        <name>ConvertirAD_task</name>
+        <param>
+          <type>void *</type>
+          <declname>pvParameter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" line="134" column="13" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" bodystart="134" bodyend="141" declfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" declline="114" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="_g2___ejer__4_8c_1ac3770cb0866545bda03d6b59ac0b13ef" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ConvertirDA_task</definition>
+        <argsstring>(void *pvParameter)</argsstring>
+        <name>ConvertirDA_task</name>
+        <param>
+          <type>void *</type>
+          <declname>pvParameter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" line="143" column="13" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" bodystart="143" bodyend="154" declfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" declline="115" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="_g2___ejer__4_8c_1a630544a7f0a2cc40d8a7fefab7e2fe70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void app_main</definition>
+        <argsstring>(void)</argsstring>
+        <name>app_main</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Función principal de la aplicación. Inicializa perifericos, timers y crea las tareas de FreeRTOS. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" line="160" column="6" bodyfile="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" bodystart="160" bodyend="199"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">/*==================[inclusions]=============================================*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/FreeRTOS.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/task.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;uart_mcu.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;analog_io_mcu.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;timer_mcu.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">/*==================[macros<sp/>and<sp/>definitions]=================================*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="_g2___ejer__4_8c_1a6b20d41d6252e9871430c242cb1a56e7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BUFFER_SIZE<sp/>231</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__4_8c_1aaba2e8f31c90bf685b29ec01cd74aca2" kindref="member">Funcomunicacion</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>param);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">/*==================[internal<sp/>data<sp/>definition]===============================*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="_g2___ejer__4_8c_1aaf8ed8dabdd9a767c071f18ae09c8081" refkind="member"><highlight class="normal">TaskHandle_t<sp/><ref refid="_g2___ejer__4_8c_1aaf8ed8dabdd9a767c071f18ae09c8081" kindref="member">ConvertirAD_task_handle</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="_g2___ejer__4_8c_1a25fb8b35adc6477c9ac522c477ffa8c8" refkind="member"><highlight class="normal">TaskHandle_t<sp/><ref refid="_g2___ejer__4_8c_1a25fb8b35adc6477c9ac522c477ffa8c8" kindref="member">ConvertirDA_task_handle</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="_g2___ejer__4_8c_1a2c75b4f34726e9b7a8dd42ca7fa1d31d" refkind="member"><highlight class="normal">TaskHandle_t<sp/><ref refid="_g2___ejer__4_8c_1a2c75b4f34726e9b7a8dd42ca7fa1d31d" kindref="member">main_task_handle</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="_g2___ejer__4_8c_1a6555bc6e0e12aed1d6d19dcd2128e508" refkind="member"><highlight class="normal">uint16_t<sp/><ref refid="_g2___ejer__4_8c_1a6555bc6e0e12aed1d6d19dcd2128e508" kindref="member">valor</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="_g2___ejer__4_8c_1a722646142c6c78eb05f858c7cc5763ee" refkind="member"><highlight class="normal">uint16_t<sp/><ref refid="_g2___ejer__4_8c_1a722646142c6c78eb05f858c7cc5763ee" kindref="member">indice</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="_g2___ejer__4_8c_1a22b7ae0bd628b770bfa68315fa000272" refkind="member"><highlight class="normal">uint16_t<sp/><ref refid="_g2___ejer__4_8c_1a22b7ae0bd628b770bfa68315fa000272" kindref="member">escribir</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="_g2___ejer__4_8c_1a2dafb8b8179af8e9f4cc4df3f588e42e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__4_8c_1a2dafb8b8179af8e9f4cc4df3f588e42e" kindref="member">ecg</ref>[<ref refid="_g2___ejer__4_8c_1a6b20d41d6252e9871430c242cb1a56e7" kindref="member">BUFFER_SIZE</ref>]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>76,<sp/>77,<sp/>78,<sp/>77,<sp/>79,<sp/>86,<sp/>81,<sp/>76,<sp/>84,<sp/>93,<sp/>85,<sp/>80,</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>89,<sp/>95,<sp/>89,<sp/>85,<sp/>93,<sp/>98,<sp/>94,<sp/>88,<sp/>98,<sp/>105,<sp/>96,<sp/>91,</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>99,<sp/>105,<sp/>101,<sp/>96,<sp/>102,<sp/>106,<sp/>101,<sp/>96,<sp/>100,<sp/>107,<sp/>101,</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>94,<sp/>100,<sp/>104,<sp/>100,<sp/>91,<sp/>99,<sp/>103,<sp/>98,<sp/>91,<sp/>96,<sp/>105,<sp/>95,</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>88,<sp/>95,<sp/>100,<sp/>94,<sp/>85,<sp/>93,<sp/>99,<sp/>92,<sp/>84,<sp/>91,<sp/>96,<sp/>87,<sp/>80,</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>83,<sp/>92,<sp/>86,<sp/>78,<sp/>84,<sp/>89,<sp/>79,<sp/>73,<sp/>81,<sp/>83,<sp/>78,<sp/>70,<sp/>80,<sp/>82,</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>79,<sp/>69,<sp/>80,<sp/>82,<sp/>81,<sp/>70,<sp/>75,<sp/>81,<sp/>77,<sp/>74,<sp/>79,<sp/>83,<sp/>82,<sp/>72,</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>80,<sp/>87,<sp/>79,<sp/>76,<sp/>85,<sp/>95,<sp/>87,<sp/>81,<sp/>88,<sp/>93,<sp/>88,<sp/>84,<sp/>87,<sp/>94,</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>86,<sp/>82,<sp/>85,<sp/>94,<sp/>85,<sp/>82,<sp/>85,<sp/>95,<sp/>86,<sp/>83,<sp/>92,<sp/>99,<sp/>91,<sp/>88,</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>94,<sp/>98,<sp/>95,<sp/>90,<sp/>97,<sp/>105,<sp/>104,<sp/>94,<sp/>98,<sp/>114,<sp/>117,<sp/>124,<sp/>144,</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>180,<sp/>210,<sp/>236,<sp/>253,<sp/>227,<sp/>171,<sp/>99,<sp/>49,<sp/>34,<sp/>29,<sp/>43,<sp/>69,<sp/>89,</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>89,<sp/>90,<sp/>98,<sp/>107,<sp/>104,<sp/>98,<sp/>104,<sp/>110,<sp/>102,<sp/>98,<sp/>103,<sp/>111,<sp/>101,</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>94,<sp/>103,<sp/>108,<sp/>102,<sp/>95,<sp/>97,<sp/>106,<sp/>100,<sp/>92,<sp/>101,<sp/>103,<sp/>100,<sp/>94,<sp/>98,</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>103,<sp/>96,<sp/>90,<sp/>98,<sp/>103,<sp/>97,<sp/>90,<sp/>99,<sp/>104,<sp/>95,<sp/>90,<sp/>99,<sp/>104,<sp/>100,<sp/>93,</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>100,<sp/>106,<sp/>101,<sp/>93,<sp/>101,<sp/>105,<sp/>103,<sp/>96,<sp/>105,<sp/>112,<sp/>105,<sp/>99,<sp/>103,<sp/>108,</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>99,<sp/>96,<sp/>102,<sp/>106,<sp/>99,<sp/>90,<sp/>92,<sp/>100,<sp/>87,<sp/>80,<sp/>82,<sp/>88,<sp/>77,<sp/>69,<sp/>75,<sp/>79,</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>74,<sp/>67,<sp/>71,<sp/>78,<sp/>72,<sp/>67,<sp/>73,<sp/>81,<sp/>77,<sp/>71,<sp/>75,<sp/>84,<sp/>79,<sp/>77,<sp/>77,<sp/>76,<sp/>76,</highlight></codeline>
+<codeline lineno="89"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="_g2___ejer__4_8c_1a2f7bb0a5f86a2b414817b05456859941" refkind="member"><highlight class="normal">serial_config_t<sp/><ref refid="_g2___ejer__4_8c_1a2f7bb0a5f86a2b414817b05456859941" kindref="member">my_uart</ref><sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>.port<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>UART_PC,</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>.baud_rate<sp/>=<sp/>115200,</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>.func_p<sp/><sp/><sp/><sp/>=<sp/><ref refid="_g2___ejer__4_8c_1aaba2e8f31c90bf685b29ec01cd74aca2" kindref="member">Funcomunicacion</ref>,</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>.param_p<sp/><sp/><sp/>=<sp/>NULL</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">/*==================[internal<sp/>functions<sp/>declaration]=========================*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__4_8c_1afaccfed84cd1498a05ea04a65f1209b1" kindref="member">FuncTimerA</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>param);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__4_8c_1a5088c3325764095ca222dc78c328f466" kindref="member">FuncTimerB</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>param);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ConvertirAD_task(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*pvParameter);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ConvertirDA_task(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*pvParameter);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="comment">/*==================[internal<sp/>functions<sp/>definition]==========================*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="_g2___ejer__4_8c_1aaba2e8f31c90bf685b29ec01cd74aca2" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__4_8c_1aaba2e8f31c90bf685b29ec01cd74aca2" kindref="member">Funcomunicacion</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>param){</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Callback<sp/>UART<sp/>vacía<sp/>por<sp/>ahora</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122" refid="_g2___ejer__4_8c_1afaccfed84cd1498a05ea04a65f1209b1" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__4_8c_1afaccfed84cd1498a05ea04a65f1209b1" kindref="member">FuncTimerA</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>param){</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>BaseType_t<sp/>xHigherPriorityTaskWoken<sp/>=<sp/>pdFALSE;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>vTaskNotifyGiveFromISR(<ref refid="_g2___ejer__4_8c_1aaf8ed8dabdd9a767c071f18ae09c8081" kindref="member">ConvertirAD_task_handle</ref>,<sp/>&amp;xHigherPriorityTaskWoken);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>portYIELD_FROM_ISR(xHigherPriorityTaskWoken);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128" refid="_g2___ejer__4_8c_1a5088c3325764095ca222dc78c328f466" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__4_8c_1a5088c3325764095ca222dc78c328f466" kindref="member">FuncTimerB</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>param){</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>BaseType_t<sp/>xHigherPriorityTaskWoken<sp/>=<sp/>pdFALSE;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>vTaskNotifyGiveFromISR(<ref refid="_g2___ejer__4_8c_1a25fb8b35adc6477c9ac522c477ffa8c8" kindref="member">ConvertirDA_task_handle</ref>,<sp/>&amp;xHigherPriorityTaskWoken);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>portYIELD_FROM_ISR(xHigherPriorityTaskWoken);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ConvertirAD_task(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*pvParameter){</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(</highlight><highlight class="keyword">true</highlight><highlight class="normal">){<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ulTaskNotifyTake(pdTRUE,<sp/>portMAX_DELAY);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AnalogInputReadSingle(CH1,<sp/>&amp;<ref refid="_g2___ejer__4_8c_1a6555bc6e0e12aed1d6d19dcd2128e508" kindref="member">valor</ref>);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>UartSendString(UART_PC,<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)<sp/>UartItoa(<ref refid="_g2___ejer__4_8c_1a6555bc6e0e12aed1d6d19dcd2128e508" kindref="member">valor</ref>,<sp/>10));</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>UartSendString(UART_PC,<sp/></highlight><highlight class="stringliteral">&quot;\r\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ConvertirDA_task(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*pvParameter){</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(</highlight><highlight class="keyword">true</highlight><highlight class="normal">){<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ulTaskNotifyTake(pdTRUE,<sp/>portMAX_DELAY);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_g2___ejer__4_8c_1a722646142c6c78eb05f858c7cc5763ee" kindref="member">indice</ref><sp/>&gt;=<sp/>212)</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_g2___ejer__4_8c_1a722646142c6c78eb05f858c7cc5763ee" kindref="member">indice</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_g2___ejer__4_8c_1a22b7ae0bd628b770bfa68315fa000272" kindref="member">escribir</ref><sp/>=<sp/><ref refid="_g2___ejer__4_8c_1a2dafb8b8179af8e9f4cc4df3f588e42e" kindref="member">ecg</ref>[<ref refid="_g2___ejer__4_8c_1a722646142c6c78eb05f858c7cc5763ee" kindref="member">indice</ref>];</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AnalogOutputWrite(<ref refid="_g2___ejer__4_8c_1a22b7ae0bd628b770bfa68315fa000272" kindref="member">escribir</ref>);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_g2___ejer__4_8c_1a722646142c6c78eb05f858c7cc5763ee" kindref="member">indice</ref>++;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="154"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight><highlight class="comment">/*==================[external<sp/>functions<sp/>definition]==========================*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160" refid="_g2___ejer__4_8c_1a630544a7f0a2cc40d8a7fefab7e2fe70" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_g2___ejer__4_8c_1a630544a7f0a2cc40d8a7fefab7e2fe70" kindref="member">app_main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">){</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>Configuración<sp/>de<sp/>entrada<sp/>analógica<sp/>usando<sp/>la<sp/>estructura<sp/>de<sp/>la<sp/>librería</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>analog_input_config_t<sp/>config_adc<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.input<sp/>=<sp/>CH1,</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.mode<sp/>=<sp/>ADC_SINGLE,</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.func_p<sp/>=<sp/>NULL,</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.param_p<sp/>=<sp/>NULL,</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.sample_frec<sp/>=<sp/>0</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>AnalogInputInit(&amp;config_adc);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>AnalogOutputInit();</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2.<sp/>Configuración<sp/>e<sp/>inicialización<sp/>de<sp/>UART</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>UartInit(&amp;<ref refid="_g2___ejer__4_8c_1a2f7bb0a5f86a2b414817b05456859941" kindref="member">my_uart</ref>);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>3.<sp/>Configuración<sp/>del<sp/>Timer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>timer_config_t<sp/>timerAD<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.timer<sp/>=<sp/>TIMER_A,</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.period<sp/>=<sp/>1000,</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.func_p<sp/>=<sp/><ref refid="_g2___ejer__4_8c_1afaccfed84cd1498a05ea04a65f1209b1" kindref="member">FuncTimerA</ref>,</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.param_p<sp/>=<sp/>NULL</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>TimerInit(&amp;timerAD);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>timer_config_t<sp/>timerDA<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.timer<sp/>=<sp/>TIMER_B,</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.period<sp/>=<sp/>4000,</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.func_p<sp/>=<sp/><ref refid="_g2___ejer__4_8c_1a5088c3325764095ca222dc78c328f466" kindref="member">FuncTimerB</ref>,</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.param_p<sp/>=<sp/>NULL</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>TimerInit(&amp;timerDA);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>4.<sp/>Creación<sp/>de<sp/>la<sp/>tarea<sp/>de<sp/>FreeRTOS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>xTaskCreate(ConvertirAD_task,<sp/></highlight><highlight class="stringliteral">&quot;ConvertirAD&quot;</highlight><highlight class="normal">,<sp/>1024,<sp/>NULL,<sp/>5,<sp/>&amp;<ref refid="_g2___ejer__4_8c_1aaf8ed8dabdd9a767c071f18ae09c8081" kindref="member">ConvertirAD_task_handle</ref>);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>xTaskCreate(ConvertirDA_task,<sp/></highlight><highlight class="stringliteral">&quot;ConvertirDA&quot;</highlight><highlight class="normal">,<sp/>1024,<sp/>NULL,<sp/>5,<sp/>&amp;<ref refid="_g2___ejer__4_8c_1a25fb8b35adc6477c9ac522c477ffa8c8" kindref="member">ConvertirDA_task_handle</ref>);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>5.<sp/>Inicio<sp/>del<sp/>Timer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>TimerStart(timerAD.timer);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>TimerStart(timerDA.timer);</highlight></codeline>
+<codeline lineno="199"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c"/>
+  </compounddef>
+</doxygen>

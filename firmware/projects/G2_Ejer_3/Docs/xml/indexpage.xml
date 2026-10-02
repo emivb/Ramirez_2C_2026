@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="es">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>G2_Ejer_3</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="index_1genDesc">
+<title>Descripción General</title><para>Este programa lee una medición de distancia mediante un sensor ultrasónico HC-SR04 y la muestra en un display LCD e indicadores LEDs en modo barómetro (vúmetro). Permite controlar el encendido/apagado y la retención mediante switches (interrupciones) y comandos recibidos por el puerto serie (UART PC). Además, envía la distancia medida por UART.</para>
+</sect1>
+<sect1 id="index_1changelog">
+<title>Historial de Cambios</title><para><table rows="4" cols="2"><row>
+<entry thead="yes" align='center'><para>Fecha  </para>
+</entry><entry thead="yes" align='left'><para>Descripción  </para>
+</entry></row>
+<row>
+<entry thead="no" align='center'><para>10/09/2026  </para>
+</entry><entry thead="no" align='left'><para>Creación de documento  </para>
+</entry></row>
+<row>
+<entry thead="no" align='center'><para>17/09/2026  </para>
+</entry><entry thead="no" align='left'><para>Estado funcional, falta documentar  </para>
+</entry></row>
+<row>
+<entry thead="no" align='center'><para>01/10/2026  </para>
+</entry><entry thead="no" align='left'><para>Documentación formato doxygen  </para>
+</entry></row>
+</table>
+</para>
+<para><simplesect kind="author"><para>Emiliano Ramirez </para>
+</simplesect>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_3/main/G2_Ejer_3.c"/>
+  </compounddef>
+</doxygen>

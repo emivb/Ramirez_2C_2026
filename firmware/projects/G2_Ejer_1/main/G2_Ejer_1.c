@@ -138,10 +138,8 @@ void Leds(uint16_t dis)
 
 void toggle(bool *al)
 {
-    if (al != NULL)
-    {
-        *al = !(*al);
-    }
+    
+    *al = !(*al);
 }
 
 static void Mostrar_task(void *pvParameter)

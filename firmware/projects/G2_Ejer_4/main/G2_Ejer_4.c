@@ -1,16 +1,25 @@
-/*! @mainpage G2_Ejer_1
+/**
+ * @file G2_Ejer_1.c
+ * @brief Conversión Analógica-Digital (ADC), Digital-Analógica (DAC) de señal ECG y transmisión UART mediante FreeRTOS y Timers.
  *
- * \section genDesc General Description
+ * @mainpage G2_Ejer_1
  *
- * This example makes LED_1, LED_2 and LED_3 blink at different rates, using FreeRTOS tasks.
+ * @section genDesc Descripción General
+ *
+ * Este proyecto realiza la lectura de una entrada analógica mediante el ADC del microcontrolador 
+ * muestreado periódicamente por el Timer A, enviando los valores leídos a la PC por UART. 
+ * A su vez, utiliza el Timer B para enviar digitalmente una señal de ECG almacenada en un buffer
+ * hacia la salida analógica (DAC).
  * 
- * @section changelog Changelog
+ * @section changelog Historial de Cambios
  *
- * |   Date	    | Description                                    |
+ * |    Fecha   | Descripción                                    |
  * |:----------:|:-----------------------------------------------|
- * | 12/09/2023 | Document creation		                         |
+ * | 17/09/2026 | Creación de documento                          |
+ * | 17/09/2026 | Funcionamiento                                 |
+ * | 01/10/2026 | Documentación formato doxygen                  |
  *
- * @author Albano Peñalva (albano.penalva@uner.edu.ar)
+ * @author Emiliano Ramirez
  *
  */
 
@@ -25,18 +34,40 @@
 #include "timer_mcu.h"
 
 /*==================[macros and definitions]=================================*/
+/**
+ * @def BUFFER_SIZE
+ * @brief Tamaño del buffer de muestras de la señal ECG.
+ */
+#define BUFFER_SIZE 231
+
+/**
+ * @brief Función de callback invocada al recibir datos por la interfaz UART.
+ * @param param Puntero a parámetros (no utilizado).
+ */
 void Funcomunicacion(void* param);
 
 /*==================[internal data definition]===============================*/
+/** @brief Handle para la tarea encargada de la conversión A/D y envío UART. */
 TaskHandle_t ConvertirAD_task_handle = NULL;
-TaskHandle_t ConvertirDA_task_handle = NULL;
-uint16_t valor = 0;
-uint16_t indice=0;
-uint16_t escribir=0;
 
-#define BUFFER_SIZE 231
-/*==================[internal data definition]===============================*/
+/** @brief Handle para la tarea encargada de la conversión D/A (salida ECG). */
+TaskHandle_t ConvertirDA_task_handle = NULL;
+
+/** @brief Handle para la tarea principal de la aplicación. */
 TaskHandle_t main_task_handle = NULL;
+
+/** @brief Variable global que almacena el valor leído del canal analógico ADC. */
+uint16_t valor = 0;
+
+/** @brief Índice del buffer `ecg` para recorrer las muestras del electrocardiograma. */
+uint16_t indice = 0;
+
+/** @brief Valor actual del buffer enviado a la salida analógica DAC. */
+uint16_t escribir = 0;
+
+/**
+ * @brief Buffer digital con la forma de onda de un electrocardiograma (ECG).
+ */
 const char ecg[BUFFER_SIZE] = {
     76, 77, 78, 77, 79, 86, 81, 76, 84, 93, 85, 80,
     89, 95, 89, 85, 93, 98, 94, 88, 98, 105, 96, 91,
@@ -57,6 +88,7 @@ const char ecg[BUFFER_SIZE] = {
     74, 67, 71, 78, 72, 67, 73, 81, 77, 71, 75, 84, 79, 77, 77, 76, 76,
 };
 
+/** @brief Configuración del puerto serie UART para comunicación con la PC. */
 serial_config_t my_uart = {
     .port      = UART_PC,
     .baud_rate = 115200,
@@ -65,6 +97,24 @@ serial_config_t my_uart = {
 };
 
 /*==================[internal functions declaration]=========================*/
+/**
+ * @brief Función de servicio de interrupción (ISR) del Timer A. 
+ *        Notifica a la tarea de conversión A/D.
+ * @param param Puntero a parámetros (no utilizado).
+ */
+void FuncTimerA(void* param);
+
+/**
+ * @brief Función de servicio de interrupción (ISR) del Timer B.
+ *        Notifica a la tarea de conversión D/A.
+ * @param param Puntero a parámetros (no utilizado).
+ */
+void FuncTimerB(void* param);
+
+static void ConvertirAD_task(void *pvParameter);
+static void ConvertirDA_task(void *pvParameter);
+
+/*==================[internal functions definition]==========================*/
 void Funcomunicacion(void* param){
     // Callback UART vacía por ahora
 }
@@ -74,6 +124,7 @@ void FuncTimerA(void* param){
     vTaskNotifyGiveFromISR(ConvertirAD_task_handle, &xHigherPriorityTaskWoken);
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
+
 void FuncTimerB(void* param){
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     vTaskNotifyGiveFromISR(ConvertirDA_task_handle, &xHigherPriorityTaskWoken);
@@ -88,21 +139,24 @@ static void ConvertirAD_task(void *pvParameter){
         UartSendString(UART_PC, "\r\n");
     }
 }
-static void ConvertirDA_task(void *pvParameter){
-	while(true){     
-		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
-		if(indice >=212)
-		{
-			indice=0;
-		}  
-		escribir =ecg[indice];
-        AnalogOutputWrite(escribir);
-		indice ++;
-	}
 
+static void ConvertirDA_task(void *pvParameter){
+    while(true){     
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+        if(indice >= 212)
+        {
+            indice = 0;
+        }   
+        escribir = ecg[indice];
+        AnalogOutputWrite(escribir);
+        indice++;
+    }
 }
 
 /*==================[external functions definition]==========================*/
+/**
+ * @brief Función principal de la aplicación. Inicializa perifericos, timers y crea las tareas de FreeRTOS.
+ */
 void app_main(void){
     // 1. Configuración de entrada analógica usando la estructura de la librería
     analog_input_config_t config_adc = {
@@ -113,7 +167,7 @@ void app_main(void){
         .sample_frec = 0
     };
     AnalogInputInit(&config_adc);
-	AnalogOutputInit();
+    AnalogOutputInit();
 
     // 2. Configuración e inicialización de UART
     UartInit(&my_uart);
@@ -126,7 +180,8 @@ void app_main(void){
         .param_p = NULL
     };
     TimerInit(&timerAD);
-	timer_config_t timerDA = {
+    
+    timer_config_t timerDA = {
         .timer = TIMER_B,
         .period = 4000,
         .func_p = FuncTimerB,
@@ -136,9 +191,9 @@ void app_main(void){
 
     // 4. Creación de la tarea de FreeRTOS
     xTaskCreate(ConvertirAD_task, "ConvertirAD", 1024, NULL, 5, &ConvertirAD_task_handle);
-	xTaskCreate(ConvertirDA_task, "ConvertirDA", 1024, NULL, 5, &ConvertirDA_task_handle);
+    xTaskCreate(ConvertirDA_task, "ConvertirDA", 1024, NULL, 5, &ConvertirDA_task_handle);
 
     // 5. Inicio del Timer
     TimerStart(timerAD.timer);
-	TimerStart(timerDA.timer);
+    TimerStart(timerDA.timer);
 }

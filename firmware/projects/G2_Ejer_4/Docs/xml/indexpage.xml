@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="es">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>G2_Ejer_1</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="index_1genDesc">
+<title>Descripción General</title><para>Este proyecto realiza la lectura de una entrada analógica mediante el ADC del microcontrolador muestreado periódicamente por el Timer A, enviando los valores leídos a la PC por UART. A su vez, utiliza el Timer B para enviar digitalmente una señal de ECG almacenada en un buffer hacia la salida analógica (DAC).</para>
+</sect1>
+<sect1 id="index_1changelog">
+<title>Historial de Cambios</title><para><table rows="4" cols="2"><row>
+<entry thead="yes" align='center'><para>Fecha  </para>
+</entry><entry thead="yes" align='left'><para>Descripción  </para>
+</entry></row>
+<row>
+<entry thead="no" align='center'><para>17/09/2026  </para>
+</entry><entry thead="no" align='left'><para>Creación de documento  </para>
+</entry></row>
+<row>
+<entry thead="no" align='center'><para>17/09/2026  </para>
+</entry><entry thead="no" align='left'><para>Funcionamiento  </para>
+</entry></row>
+<row>
+<entry thead="no" align='center'><para>01/10/2026  </para>
+</entry><entry thead="no" align='left'><para>Documentación formato doxygen  </para>
+</entry></row>
+</table>
+</para>
+<para><simplesect kind="author"><para>Emiliano Ramirez </para>
+</simplesect>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c"/>
+  </compounddef>
+</doxygen>

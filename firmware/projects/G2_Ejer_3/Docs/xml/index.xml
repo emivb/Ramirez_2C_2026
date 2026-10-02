@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.18.0" xml:lang="es">
+  <compound refid="_g2___ejer__3_8c" kind="file"><name>G2_Ejer_3.c</name>
+    <member refid="_g2___ejer__3_8c_1af97daccf59623ad73d259a1f57f48e8b" kind="define"><name>mostrar_delay</name></member>
+    <member refid="_g2___ejer__3_8c_1ad8ed67e2e164531e3388c541853e0503" kind="define"><name>medir_delay</name></member>
+    <member refid="_g2___ejer__3_8c_1a2697c9427db0ca0ce43f563949c84da9" kind="variable"><name>Mostrar_task_handle</name></member>
+    <member refid="_g2___ejer__3_8c_1ac775c51d06b43d7dcf5458c6864f9577" kind="variable"><name>Medir_task_handle</name></member>
+    <member refid="_g2___ejer__3_8c_1a3875f2da97e41ea8543af2b772e50133" kind="variable"><name>prender</name></member>
+    <member refid="_g2___ejer__3_8c_1a66eb34a4e5e5fb8142a3471180198b3c" kind="variable"><name>mantener</name></member>
+    <member refid="_g2___ejer__3_8c_1aec40b15ff3098bdb2425eb4dc9c11a18" kind="variable"><name>distancia</name></member>
+    <member refid="_g2___ejer__3_8c_1af06d530b78e1c0699d82bc2a017ce7d5" kind="variable"><name>aux</name></member>
+    <member refid="_g2___ejer__3_8c_1a2f7bb0a5f86a2b414817b05456859941" kind="variable"><name>my_uart</name></member>
+    <member refid="_g2___ejer__3_8c_1a60ed989ecaa9a8b05ff5d2cb62ab8676" kind="function"><name>Leds</name></member>
+    <member refid="_g2___ejer__3_8c_1aaba2e8f31c90bf685b29ec01cd74aca2" kind="function"><name>Funcomunicacion</name></member>
+    <member refid="_g2___ejer__3_8c_1a970365c016042696a7ad9d75aac45d64" kind="function"><name>apagartodo</name></member>
+    <member refid="_g2___ejer__3_8c_1ad68dd071e4a9747b073f3b9324745fa6" kind="function"><name>toggle</name></member>
+    <member refid="_g2___ejer__3_8c_1ae7b2398b45b3a4e147bb773f6d7fd915" kind="function"><name>Tecla1</name></member>
+    <member refid="_g2___ejer__3_8c_1aab4aa84a51d1ae0bc3198a14fd573653" kind="function"><name>Tecla2</name></member>
+    <member refid="_g2___ejer__3_8c_1ab4eb0b6177a9800fafe0051ce3c7bd93" kind="function"><name>Mostrar_task</name></member>
+    <member refid="_g2___ejer__3_8c_1a33a2361b72a3e11421c7b98600e7f600" kind="function"><name>Medir_task</name></member>
+    <member refid="_g2___ejer__3_8c_1a630544a7f0a2cc40d8a7fefab7e2fe70" kind="function"><name>app_main</name></member>
+  </compound>
+  <compound refid="dir_d9edf6c004b4a7ff14fe9ae7a92214ee" kind="dir"><name>C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware</name>
+  </compound>
+  <compound refid="dir_3883134b686b8b235aac4bfe4dd6562b" kind="dir"><name>C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_3</name>
+  </compound>
+  <compound refid="dir_8914723262f167aa54249bedeff8b9f6" kind="dir"><name>C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_3/main</name>
+  </compound>
+  <compound refid="dir_429d80758da54da73083af4edd40d0b3" kind="dir"><name>C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects</name>
+  </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
+  </compound>
+</doxygenindex>

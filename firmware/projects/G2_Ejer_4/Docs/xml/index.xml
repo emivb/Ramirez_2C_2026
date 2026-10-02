@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.18.0" xml:lang="es">
+  <compound refid="_g2___ejer__4_8c" kind="file"><name>G2_Ejer_4.c</name>
+    <member refid="_g2___ejer__4_8c_1a6b20d41d6252e9871430c242cb1a56e7" kind="define"><name>BUFFER_SIZE</name></member>
+    <member refid="_g2___ejer__4_8c_1aaf8ed8dabdd9a767c071f18ae09c8081" kind="variable"><name>ConvertirAD_task_handle</name></member>
+    <member refid="_g2___ejer__4_8c_1a25fb8b35adc6477c9ac522c477ffa8c8" kind="variable"><name>ConvertirDA_task_handle</name></member>
+    <member refid="_g2___ejer__4_8c_1a2c75b4f34726e9b7a8dd42ca7fa1d31d" kind="variable"><name>main_task_handle</name></member>
+    <member refid="_g2___ejer__4_8c_1a6555bc6e0e12aed1d6d19dcd2128e508" kind="variable"><name>valor</name></member>
+    <member refid="_g2___ejer__4_8c_1a722646142c6c78eb05f858c7cc5763ee" kind="variable"><name>indice</name></member>
+    <member refid="_g2___ejer__4_8c_1a22b7ae0bd628b770bfa68315fa000272" kind="variable"><name>escribir</name></member>
+    <member refid="_g2___ejer__4_8c_1a2dafb8b8179af8e9f4cc4df3f588e42e" kind="variable"><name>ecg</name></member>
+    <member refid="_g2___ejer__4_8c_1a2f7bb0a5f86a2b414817b05456859941" kind="variable"><name>my_uart</name></member>
+    <member refid="_g2___ejer__4_8c_1aaba2e8f31c90bf685b29ec01cd74aca2" kind="function"><name>Funcomunicacion</name></member>
+    <member refid="_g2___ejer__4_8c_1afaccfed84cd1498a05ea04a65f1209b1" kind="function"><name>FuncTimerA</name></member>
+    <member refid="_g2___ejer__4_8c_1a5088c3325764095ca222dc78c328f466" kind="function"><name>FuncTimerB</name></member>
+    <member refid="_g2___ejer__4_8c_1a62e44f8c5dd57759dc6f3ca528765ce2" kind="function"><name>ConvertirAD_task</name></member>
+    <member refid="_g2___ejer__4_8c_1ac3770cb0866545bda03d6b59ac0b13ef" kind="function"><name>ConvertirDA_task</name></member>
+    <member refid="_g2___ejer__4_8c_1a630544a7f0a2cc40d8a7fefab7e2fe70" kind="function"><name>app_main</name></member>
+  </compound>
+  <compound refid="dir_d9edf6c004b4a7ff14fe9ae7a92214ee" kind="dir"><name>C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware</name>
+  </compound>
+  <compound refid="dir_709bbd493b2b546414a10e33cfd37638" kind="dir"><name>C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4</name>
+  </compound>
+  <compound refid="dir_3ec56515ccaa393fac2dca6684c254d7" kind="dir"><name>C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main</name>
+  </compound>
+  <compound refid="dir_429d80758da54da73083af4edd40d0b3" kind="dir"><name>C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects</name>
+  </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
+  </compound>
+</doxygenindex>

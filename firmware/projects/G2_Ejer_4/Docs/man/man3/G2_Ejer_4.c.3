@@ -1,0 +1,230 @@
+.TH "C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c" 3 "Version 1.0" "G2_Ejer_4" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_4/main/G2_Ejer_4.c
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <stdio\&.h>\fP
+.br
+\fR#include <stdint\&.h>\fP
+.br
+\fR#include <stdbool\&.h>\fP
+.br
+\fR#include 'freertos/FreeRTOS\&.h'\fP
+.br
+\fR#include 'freertos/task\&.h'\fP
+.br
+\fR#include 'uart_mcu\&.h'\fP
+.br
+\fR#include 'analog_io_mcu\&.h'\fP
+.br
+\fR#include 'timer_mcu\&.h'\fP
+.br
+
+.SS "defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBBUFFER_SIZE\fP   231"
+.br
+.RI "Tamaño del buffer de muestras de la señal ECG\&. "
+.in -1c
+.SS "Funciones"
+
+.in +1c
+.ti -1c
+.RI "void \fBFuncomunicacion\fP (void *param)"
+.br
+.RI "Función de callback invocada al recibir datos por la interfaz UART\&. "
+.ti -1c
+.RI "void \fBFuncTimerA\fP (void *param)"
+.br
+.RI "Función de servicio de interrupción (ISR) del Timer A\&. Notifica a la tarea de conversión A/D\&. "
+.ti -1c
+.RI "void \fBFuncTimerB\fP (void *param)"
+.br
+.RI "Función de servicio de interrupción (ISR) del Timer B\&. Notifica a la tarea de conversión D/A\&. "
+.ti -1c
+.RI "void \fBapp_main\fP (void)"
+.br
+.RI "Función principal de la aplicación\&. Inicializa perifericos, timers y crea las tareas de FreeRTOS\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "TaskHandle_t \fBConvertirAD_task_handle\fP = NULL"
+.br
+.RI "Handle para la tarea encargada de la conversión A/D y envío UART\&. "
+.ti -1c
+.RI "TaskHandle_t \fBConvertirDA_task_handle\fP = NULL"
+.br
+.RI "Handle para la tarea encargada de la conversión D/A (salida ECG)\&. "
+.ti -1c
+.RI "TaskHandle_t \fBmain_task_handle\fP = NULL"
+.br
+.RI "Handle para la tarea principal de la aplicación\&. "
+.ti -1c
+.RI "uint16_t \fBvalor\fP = 0"
+.br
+.RI "Variable global que almacena el valor leído del canal analógico ADC\&. "
+.ti -1c
+.RI "uint16_t \fBindice\fP = 0"
+.br
+.RI "Índice del buffer \fR\fBecg\fP\fP para recorrer las muestras del electrocardiograma\&. "
+.ti -1c
+.RI "uint16_t \fBescribir\fP = 0"
+.br
+.RI "Valor actual del buffer enviado a la salida analógica DAC\&. "
+.ti -1c
+.RI "const char \fBecg\fP [\fBBUFFER_SIZE\fP]"
+.br
+.RI "Buffer digital con la forma de onda de un electrocardiograma (ECG)\&. "
+.ti -1c
+.RI "serial_config_t \fBmy_uart\fP"
+.br
+.RI "Configuración del puerto serie UART para comunicación con la PC\&. "
+.in -1c
+.SH "Documentación de «define»"
+.PP 
+.SS "#define BUFFER_SIZE   231"
+
+.PP
+Tamaño del buffer de muestras de la señal ECG\&. 
+.PP
+Definición en la línea \fB41\fP del archivo \fBG2_Ejer_4\&.c\fP\&.
+.SH "Documentación de funciones"
+.PP 
+.SS "void app_main (void )"
+
+.PP
+Función principal de la aplicación\&. Inicializa perifericos, timers y crea las tareas de FreeRTOS\&. 
+.PP
+Definición en la línea \fB160\fP del archivo \fBG2_Ejer_4\&.c\fP\&.
+.SS "void Funcomunicacion (void * param)"
+
+.PP
+Función de callback invocada al recibir datos por la interfaz UART\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIparam\fP Puntero a parámetros (no utilizado)\&. 
+.RE
+.PP
+
+.PP
+Definición en la línea \fB118\fP del archivo \fBG2_Ejer_4\&.c\fP\&.
+.SS "void FuncTimerA (void * param)"
+
+.PP
+Función de servicio de interrupción (ISR) del Timer A\&. Notifica a la tarea de conversión A/D\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIparam\fP Puntero a parámetros (no utilizado)\&. 
+.RE
+.PP
+
+.PP
+Definición en la línea \fB122\fP del archivo \fBG2_Ejer_4\&.c\fP\&.
+.SS "void FuncTimerB (void * param)"
+
+.PP
+Función de servicio de interrupción (ISR) del Timer B\&. Notifica a la tarea de conversión D/A\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIparam\fP Puntero a parámetros (no utilizado)\&. 
+.RE
+.PP
+
+.PP
+Definición en la línea \fB128\fP del archivo \fBG2_Ejer_4\&.c\fP\&.
+.SH "Documentación de variables"
+.PP 
+.SS "TaskHandle_t ConvertirAD_task_handle = NULL"
+
+.PP
+Handle para la tarea encargada de la conversión A/D y envío UART\&. 
+.PP
+Definición en la línea \fB51\fP del archivo \fBG2_Ejer_4\&.c\fP\&.
+.SS "TaskHandle_t ConvertirDA_task_handle = NULL"
+
+.PP
+Handle para la tarea encargada de la conversión D/A (salida ECG)\&. 
+.PP
+Definición en la línea \fB54\fP del archivo \fBG2_Ejer_4\&.c\fP\&.
+.SS "const char ecg[\fBBUFFER_SIZE\fP]"
+\fBValor inicial:\fP
+.nf
+               = {
+    76, 77, 78, 77, 79, 86, 81, 76, 84, 93, 85, 80,
+    89, 95, 89, 85, 93, 98, 94, 88, 98, 105, 96, 91,
+    99, 105, 101, 96, 102, 106, 101, 96, 100, 107, 101,
+    94, 100, 104, 100, 91, 99, 103, 98, 91, 96, 105, 95,
+    88, 95, 100, 94, 85, 93, 99, 92, 84, 91, 96, 87, 80,
+    83, 92, 86, 78, 84, 89, 79, 73, 81, 83, 78, 70, 80, 82,
+    79, 69, 80, 82, 81, 70, 75, 81, 77, 74, 79, 83, 82, 72,
+    80, 87, 79, 76, 85, 95, 87, 81, 88, 93, 88, 84, 87, 94,
+    86, 82, 85, 94, 85, 82, 85, 95, 86, 83, 92, 99, 91, 88,
+    94, 98, 95, 90, 97, 105, 104, 94, 98, 114, 117, 124, 144,
+    180, 210, 236, 253, 227, 171, 99, 49, 34, 29, 43, 69, 89,
+    89, 90, 98, 107, 104, 98, 104, 110, 102, 98, 103, 111, 101,
+    94, 103, 108, 102, 95, 97, 106, 100, 92, 101, 103, 100, 94, 98,
+    103, 96, 90, 98, 103, 97, 90, 99, 104, 95, 90, 99, 104, 100, 93,
+    100, 106, 101, 93, 101, 105, 103, 96, 105, 112, 105, 99, 103, 108,
+    99, 96, 102, 106, 99, 90, 92, 100, 87, 80, 82, 88, 77, 69, 75, 79,
+    74, 67, 71, 78, 72, 67, 73, 81, 77, 71, 75, 84, 79, 77, 77, 76, 76,
+}
+.PP
+.fi
+
+.PP
+Buffer digital con la forma de onda de un electrocardiograma (ECG)\&. 
+.PP
+Definición en la línea \fB71\fP del archivo \fBG2_Ejer_4\&.c\fP\&.
+.SS "uint16_t escribir = 0"
+
+.PP
+Valor actual del buffer enviado a la salida analógica DAC\&. 
+.PP
+Definición en la línea \fB66\fP del archivo \fBG2_Ejer_4\&.c\fP\&.
+.SS "uint16_t indice = 0"
+
+.PP
+Índice del buffer \fR\fBecg\fP\fP para recorrer las muestras del electrocardiograma\&. 
+.PP
+Definición en la línea \fB63\fP del archivo \fBG2_Ejer_4\&.c\fP\&.
+.SS "TaskHandle_t main_task_handle = NULL"
+
+.PP
+Handle para la tarea principal de la aplicación\&. 
+.PP
+Definición en la línea \fB57\fP del archivo \fBG2_Ejer_4\&.c\fP\&.
+.SS "serial_config_t my_uart"
+\fBValor inicial:\fP
+.nf
+                        = {
+    \&.port      = UART_PC,
+    \&.baud_rate = 115200,
+    \&.func_p    = Funcomunicacion,
+    \&.param_p   = NULL
+}
+.PP
+.fi
+
+.PP
+Configuración del puerto serie UART para comunicación con la PC\&. 
+.PP
+Definición en la línea \fB92\fP del archivo \fBG2_Ejer_4\&.c\fP\&.
+.SS "uint16_t valor = 0"
+
+.PP
+Variable global que almacena el valor leído del canal analógico ADC\&. 
+.PP
+Definición en la línea \fB60\fP del archivo \fBG2_Ejer_4\&.c\fP\&.
+.SH "Autor"
+.PP 
+Generado automáticamente por Doxygen para G2_Ejer_4 del código fuente\&.

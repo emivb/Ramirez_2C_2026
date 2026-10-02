@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['apagartodo_0',['apagartodo',['../_g2___ejer__3_8c.html#a970365c016042696a7ad9d75aac45d64',1,'G2_Ejer_3.c']]],
+  ['app_5fmain_1',['app_main',['../_g2___ejer__3_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'G2_Ejer_3.c']]],
+  ['aux_2',['aux',['../_g2___ejer__3_8c.html#af06d530b78e1c0699d82bc2a017ce7d5',1,'G2_Ejer_3.c']]]
+];

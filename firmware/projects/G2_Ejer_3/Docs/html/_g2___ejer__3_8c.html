@@ -1,0 +1,545 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>G2_Ejer_3: Referencia del archivo C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_3/main/G2_Ejer_3.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">G2_Ejer_3<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('_g2___ejer__3_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referencia del archivo G2_Ejer_3.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Medición de distancia con HC-SR04, display LCD, LEDs, switches por interrupción y puerto serie UART.  
+<a href="#details">Más...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &quot;freertos/FreeRTOS.h&quot;</code><br />
+<code>#include &quot;freertos/task.h&quot;</code><br />
+<code>#include &quot;led.h&quot;</code><br />
+<code>#include &quot;lcditse0803.h&quot;</code><br />
+<code>#include &quot;switch.h&quot;</code><br />
+<code>#include &quot;hc_sr04.h&quot;</code><br />
+<code>#include &quot;uart_mcu.h&quot;</code><br />
+</div>
+<p><a href="_g2___ejer__3_8c_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:af97daccf59623ad73d259a1f57f48e8b" id="r_af97daccf59623ad73d259a1f57f48e8b"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af97daccf59623ad73d259a1f57f48e8b">mostrar_delay</a>&#160;&#160;&#160;100</td></tr>
+<tr class="memdesc:af97daccf59623ad73d259a1f57f48e8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valor en milisegundos para el refresco del display LCD y LEDs.  <br /></td></tr>
+<tr class="memitem:ad8ed67e2e164531e3388c541853e0503" id="r_ad8ed67e2e164531e3388c541853e0503"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ad8ed67e2e164531e3388c541853e0503">medir_delay</a>&#160;&#160;&#160;1000</td></tr>
+<tr class="memdesc:ad8ed67e2e164531e3388c541853e0503"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valor en milisegundos para el intervalo entre cada medición de distancia y envío UART.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:a60ed989ecaa9a8b05ff5d2cb62ab8676" id="r_a60ed989ecaa9a8b05ff5d2cb62ab8676"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a60ed989ecaa9a8b05ff5d2cb62ab8676">Leds</a> (uint16_t <a class="el" href="#aec40b15ff3098bdb2425eb4dc9c11a18">distancia</a>)</td></tr>
+<tr class="memdesc:a60ed989ecaa9a8b05ff5d2cb62ab8676"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utiliza los LEDs como vúmetro según la distancia especificada.  <br /></td></tr>
+<tr class="memitem:aaba2e8f31c90bf685b29ec01cd74aca2" id="r_aaba2e8f31c90bf685b29ec01cd74aca2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aaba2e8f31c90bf685b29ec01cd74aca2">Funcomunicacion</a> (void *param)</td></tr>
+<tr class="memdesc:aaba2e8f31c90bf685b29ec01cd74aca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función de callback invocada al recibir datos por la UART.  <br /></td></tr>
+<tr class="memitem:a970365c016042696a7ad9d75aac45d64" id="r_a970365c016042696a7ad9d75aac45d64"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a970365c016042696a7ad9d75aac45d64">apagartodo</a> (void)</td></tr>
+<tr class="memdesc:a970365c016042696a7ad9d75aac45d64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apaga todos los LEDs y deshabilita la pantalla LCD.  <br /></td></tr>
+<tr class="memitem:ad68dd071e4a9747b073f3b9324745fa6" id="r_ad68dd071e4a9747b073f3b9324745fa6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad68dd071e4a9747b073f3b9324745fa6">toggle</a> (bool *al)</td></tr>
+<tr class="memdesc:ad68dd071e4a9747b073f3b9324745fa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conmuta el estado de una variable booleana recibida por referencia.  <br /></td></tr>
+<tr class="memitem:ae7b2398b45b3a4e147bb773f6d7fd915" id="r_ae7b2398b45b3a4e147bb773f6d7fd915"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae7b2398b45b3a4e147bb773f6d7fd915">Tecla1</a> (void *pvParameter)</td></tr>
+<tr class="memdesc:ae7b2398b45b3a4e147bb773f6d7fd915"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función ISR/callback de la tecla 1. Conmuta el estado de encendido (<span class="tt"><a class="el" href="#a3875f2da97e41ea8543af2b772e50133" title="Estado de encendido/apagado del sistema.">prender</a></span>).  <br /></td></tr>
+<tr class="memitem:aab4aa84a51d1ae0bc3198a14fd573653" id="r_aab4aa84a51d1ae0bc3198a14fd573653"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aab4aa84a51d1ae0bc3198a14fd573653">Tecla2</a> (void *pvParameter)</td></tr>
+<tr class="memdesc:aab4aa84a51d1ae0bc3198a14fd573653"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función ISR/callback de la tecla 2. Conmuta el estado de retención (<span class="tt"><a class="el" href="#a66eb34a4e5e5fb8142a3471180198b3c" title="Estado de retención/congelamiento de la pantalla y valor medido.">mantener</a></span>).  <br /></td></tr>
+<tr class="memitem:a630544a7f0a2cc40d8a7fefab7e2fe70" id="r_a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a> (void)</td></tr>
+<tr class="memdesc:a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función principal del sistema. Inicializa periféricos, UART e interrupciones y crea las tareas.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a2697c9427db0ca0ce43f563949c84da9" id="r_a2697c9427db0ca0ce43f563949c84da9"><td class="memItemLeft">TaskHandle_t&#160;</td><td class="memItemRight"><a class="el" href="#a2697c9427db0ca0ce43f563949c84da9">Mostrar_task_handle</a> = NULL</td></tr>
+<tr class="memdesc:a2697c9427db0ca0ce43f563949c84da9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle para la tarea encargada de actualizar la pantalla LCD y los LEDs.  <br /></td></tr>
+<tr class="memitem:ac775c51d06b43d7dcf5458c6864f9577" id="r_ac775c51d06b43d7dcf5458c6864f9577"><td class="memItemLeft">TaskHandle_t&#160;</td><td class="memItemRight"><a class="el" href="#ac775c51d06b43d7dcf5458c6864f9577">Medir_task_handle</a> = NULL</td></tr>
+<tr class="memdesc:ac775c51d06b43d7dcf5458c6864f9577"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle para la tarea encargada de realizar la medición con el sensor HC-SR04 y enviar por UART.  <br /></td></tr>
+<tr class="memitem:a3875f2da97e41ea8543af2b772e50133" id="r_a3875f2da97e41ea8543af2b772e50133"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a3875f2da97e41ea8543af2b772e50133">prender</a> = true</td></tr>
+<tr class="memdesc:a3875f2da97e41ea8543af2b772e50133"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estado de encendido/apagado del sistema.  <br /></td></tr>
+<tr class="memitem:a66eb34a4e5e5fb8142a3471180198b3c" id="r_a66eb34a4e5e5fb8142a3471180198b3c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a66eb34a4e5e5fb8142a3471180198b3c">mantener</a> = false</td></tr>
+<tr class="memdesc:a66eb34a4e5e5fb8142a3471180198b3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estado de retención/congelamiento de la pantalla y valor medido.  <br /></td></tr>
+<tr class="memitem:aec40b15ff3098bdb2425eb4dc9c11a18" id="r_aec40b15ff3098bdb2425eb4dc9c11a18"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#aec40b15ff3098bdb2425eb4dc9c11a18">distancia</a> = 0</td></tr>
+<tr class="memdesc:aec40b15ff3098bdb2425eb4dc9c11a18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable global que almacena la distancia medida en centímetros.  <br /></td></tr>
+<tr class="memitem:af06d530b78e1c0699d82bc2a017ce7d5" id="r_af06d530b78e1c0699d82bc2a017ce7d5"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#af06d530b78e1c0699d82bc2a017ce7d5">aux</a> = 0</td></tr>
+<tr class="memdesc:af06d530b78e1c0699d82bc2a017ce7d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable auxiliar que guarda la última distancia congelada o en tiempo real para transmisión UART.  <br /></td></tr>
+<tr class="memitem:a2f7bb0a5f86a2b414817b05456859941" id="r_a2f7bb0a5f86a2b414817b05456859941"><td class="memItemLeft">serial_config_t&#160;</td><td class="memItemRight"><a class="el" href="#a2f7bb0a5f86a2b414817b05456859941">my_uart</a></td></tr>
+<tr class="memdesc:a2f7bb0a5f86a2b414817b05456859941"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuración de la interfaz serie UART para comunicación con la PC.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Medición de distancia con HC-SR04, display LCD, LEDs, switches por interrupción y puerto serie UART. </p>
+
+<p class="definition">Definición en el archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Documentación de «define»</h2>
+<a id="ad8ed67e2e164531e3388c541853e0503" name="ad8ed67e2e164531e3388c541853e0503"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8ed67e2e164531e3388c541853e0503">&#9670;&#160;</a></span>medir_delay</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define medir_delay&#160;&#160;&#160;1000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Valor en milisegundos para el intervalo entre cada medición de distancia y envío UART. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_g2___ejer__3_8c_source.html#l00049">49</a> del archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+
+</div>
+</div>
+<a id="af97daccf59623ad73d259a1f57f48e8b" name="af97daccf59623ad73d259a1f57f48e8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af97daccf59623ad73d259a1f57f48e8b">&#9670;&#160;</a></span>mostrar_delay</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define mostrar_delay&#160;&#160;&#160;100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Valor en milisegundos para el refresco del display LCD y LEDs. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_g2___ejer__3_8c_source.html#l00043">43</a> del archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
+<a id="a970365c016042696a7ad9d75aac45d64" name="a970365c016042696a7ad9d75aac45d64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a970365c016042696a7ad9d75aac45d64">&#9670;&#160;</a></span>apagartodo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void apagartodo </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Apaga todos los LEDs y deshabilita la pantalla LCD. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_g2___ejer__3_8c_source.html#l00124">124</a> del archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+
+</div>
+</div>
+<a id="a630544a7f0a2cc40d8a7fefab7e2fe70" name="a630544a7f0a2cc40d8a7fefab7e2fe70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a630544a7f0a2cc40d8a7fefab7e2fe70">&#9670;&#160;</a></span>app_main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void app_main </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función principal del sistema. Inicializa periféricos, UART e interrupciones y crea las tareas. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_g2___ejer__3_8c_source.html#l00233">233</a> del archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+
+</div>
+</div>
+<a id="aaba2e8f31c90bf685b29ec01cd74aca2" name="aaba2e8f31c90bf685b29ec01cd74aca2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaba2e8f31c90bf685b29ec01cd74aca2">&#9670;&#160;</a></span>Funcomunicacion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Funcomunicacion </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>param</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función de callback invocada al recibir datos por la UART. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">param</td><td>Puntero a parámetro (no utilizado). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_g2___ejer__3_8c_source.html#l00163">163</a> del archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+
+</div>
+</div>
+<a id="a60ed989ecaa9a8b05ff5d2cb62ab8676" name="a60ed989ecaa9a8b05ff5d2cb62ab8676"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60ed989ecaa9a8b05ff5d2cb62ab8676">&#9670;&#160;</a></span>Leds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Leds </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>dis</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Utiliza los LEDs como vúmetro según la distancia especificada. </p>
+<p>Controla el encendido de LEDs (vúmetro) según el rango de distancia recibido.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">distancia</td><td>Distancia medida en centímetros.</td></tr>
+    <tr><td class="paramname">dis</td><td>Distancia en centímetros. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_g2___ejer__3_8c_source.html#l00129">129</a> del archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+
+</div>
+</div>
+<a id="ae7b2398b45b3a4e147bb773f6d7fd915" name="ae7b2398b45b3a4e147bb773f6d7fd915"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7b2398b45b3a4e147bb773f6d7fd915">&#9670;&#160;</a></span>Tecla1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tecla1 </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>pvParameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función ISR/callback de la tecla 1. Conmuta el estado de encendido (<span class="tt"><a class="el" href="#a3875f2da97e41ea8543af2b772e50133" title="Estado de encendido/apagado del sistema.">prender</a></span>). </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pvParameter</td><td>Puntero a parámetros (no utilizado). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_g2___ejer__3_8c_source.html#l00202">202</a> del archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+
+</div>
+</div>
+<a id="aab4aa84a51d1ae0bc3198a14fd573653" name="aab4aa84a51d1ae0bc3198a14fd573653"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab4aa84a51d1ae0bc3198a14fd573653">&#9670;&#160;</a></span>Tecla2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tecla2 </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>pvParameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función ISR/callback de la tecla 2. Conmuta el estado de retención (<span class="tt"><a class="el" href="#a66eb34a4e5e5fb8142a3471180198b3c" title="Estado de retención/congelamiento de la pantalla y valor medido.">mantener</a></span>). </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pvParameter</td><td>Puntero a parámetros (no utilizado). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_g2___ejer__3_8c_source.html#l00206">206</a> del archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+
+</div>
+</div>
+<a id="ad68dd071e4a9747b073f3b9324745fa6" name="ad68dd071e4a9747b073f3b9324745fa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad68dd071e4a9747b073f3b9324745fa6">&#9670;&#160;</a></span>toggle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void toggle </td>
+          <td>(</td>
+          <td class="paramtype">bool *</td>          <td class="paramname"><span class="paramname"><em>al</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Conmuta el estado de una variable booleana recibida por referencia. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">al</td><td>Puntero a la variable booleana a conmutar. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_g2___ejer__3_8c_source.html#l00158">158</a> del archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
+<a id="af06d530b78e1c0699d82bc2a017ce7d5" name="af06d530b78e1c0699d82bc2a017ce7d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af06d530b78e1c0699d82bc2a017ce7d5">&#9670;&#160;</a></span>aux</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t aux = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Variable auxiliar que guarda la última distancia congelada o en tiempo real para transmisión UART. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_g2___ejer__3_8c_source.html#l00080">80</a> del archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+
+</div>
+</div>
+<a id="aec40b15ff3098bdb2425eb4dc9c11a18" name="aec40b15ff3098bdb2425eb4dc9c11a18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec40b15ff3098bdb2425eb4dc9c11a18">&#9670;&#160;</a></span>distancia</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t distancia = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Variable global que almacena la distancia medida en centímetros. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_g2___ejer__3_8c_source.html#l00077">77</a> del archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+
+</div>
+</div>
+<a id="a66eb34a4e5e5fb8142a3471180198b3c" name="a66eb34a4e5e5fb8142a3471180198b3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66eb34a4e5e5fb8142a3471180198b3c">&#9670;&#160;</a></span>mantener</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool mantener = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Estado de retención/congelamiento de la pantalla y valor medido. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_g2___ejer__3_8c_source.html#l00074">74</a> del archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+
+</div>
+</div>
+<a id="ac775c51d06b43d7dcf5458c6864f9577" name="ac775c51d06b43d7dcf5458c6864f9577"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac775c51d06b43d7dcf5458c6864f9577">&#9670;&#160;</a></span>Medir_task_handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t Medir_task_handle = NULL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handle para la tarea encargada de realizar la medición con el sensor HC-SR04 y enviar por UART. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_g2___ejer__3_8c_source.html#l00068">68</a> del archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+
+</div>
+</div>
+<a id="a2697c9427db0ca0ce43f563949c84da9" name="a2697c9427db0ca0ce43f563949c84da9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2697c9427db0ca0ce43f563949c84da9">&#9670;&#160;</a></span>Mostrar_task_handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t Mostrar_task_handle = NULL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handle para la tarea encargada de actualizar la pantalla LCD y los LEDs. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_g2___ejer__3_8c_source.html#l00065">65</a> del archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+
+</div>
+</div>
+<a id="a2f7bb0a5f86a2b414817b05456859941" name="a2f7bb0a5f86a2b414817b05456859941"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f7bb0a5f86a2b414817b05456859941">&#9670;&#160;</a></span>my_uart</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">serial_config_t my_uart</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor inicial:</b><div class="fragment"><div class="line">                        = {</div>
+<div class="line">    .port      = UART_PC,</div>
+<div class="line">    .baud_rate = 115200,</div>
+<div class="line">    .func_p    = <a class="code hl_function" href="#aaba2e8f31c90bf685b29ec01cd74aca2">Funcomunicacion</a>,   </div>
+<div class="line">    .param_p   = NULL</div>
+<div class="line">}</div>
+<div class="ttc" id="a_g2___ejer__3_8c_html_aaba2e8f31c90bf685b29ec01cd74aca2"><div class="ttname"><a href="#aaba2e8f31c90bf685b29ec01cd74aca2">Funcomunicacion</a></div><div class="ttdeci">void Funcomunicacion(void *param)</div><div class="ttdoc">Función de callback invocada al recibir datos por la UART.</div><div class="ttdef"><b>Definición</b> <a href="_g2___ejer__3_8c_source.html#l00163">G2_Ejer_3.c:163</a></div></div>
+</div><!-- fragment -->
+<p>Configuración de la interfaz serie UART para comunicación con la PC. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_g2___ejer__3_8c_source.html#l00083">83</a> del archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+
+</div>
+</div>
+<a id="a3875f2da97e41ea8543af2b772e50133" name="a3875f2da97e41ea8543af2b772e50133"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3875f2da97e41ea8543af2b772e50133">&#9670;&#160;</a></span>prender</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool prender = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Estado de encendido/apagado del sistema. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_g2___ejer__3_8c_source.html#l00071">71</a> del archivo <a class="el" href="_g2___ejer__3_8c_source.html">G2_Ejer_3.c</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d9edf6c004b4a7ff14fe9ae7a92214ee.html">firmware</a></li><li class="navelem"><a href="dir_429d80758da54da73083af4edd40d0b3.html">projects</a></li><li class="navelem"><a href="dir_3883134b686b8b235aac4bfe4dd6562b.html">G2_Ejer_3</a></li><li class="navelem"><a href="dir_8914723262f167aa54249bedeff8b9f6.html">main</a></li><li class="navelem"><a href="_g2___ejer__3_8c.html">G2_Ejer_3.c</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

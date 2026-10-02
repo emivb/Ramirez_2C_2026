@@ -1,0 +1,266 @@
+.TH "C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_3/main/G2_Ejer_3.c" 3 "Version 1.0" "G2_Ejer_3" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Emi/Documents/Repositorios/Ramirez_2C_2026/firmware/projects/G2_Ejer_3/main/G2_Ejer_3.c \- Medición de distancia con HC-SR04, display LCD, LEDs, switches por interrupción y puerto serie UART\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <stdio\&.h>\fP
+.br
+\fR#include <stdint\&.h>\fP
+.br
+\fR#include <stdbool\&.h>\fP
+.br
+\fR#include 'freertos/FreeRTOS\&.h'\fP
+.br
+\fR#include 'freertos/task\&.h'\fP
+.br
+\fR#include 'led\&.h'\fP
+.br
+\fR#include 'lcditse0803\&.h'\fP
+.br
+\fR#include 'switch\&.h'\fP
+.br
+\fR#include 'hc_sr04\&.h'\fP
+.br
+\fR#include 'uart_mcu\&.h'\fP
+.br
+
+.SS "defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBmostrar_delay\fP   100"
+.br
+.RI "Valor en milisegundos para el refresco del display LCD y LEDs\&. "
+.ti -1c
+.RI "#define \fBmedir_delay\fP   1000"
+.br
+.RI "Valor en milisegundos para el intervalo entre cada medición de distancia y envío UART\&. "
+.in -1c
+.SS "Funciones"
+
+.in +1c
+.ti -1c
+.RI "void \fBLeds\fP (uint16_t \fBdistancia\fP)"
+.br
+.RI "Utiliza los LEDs como vúmetro según la distancia especificada\&. "
+.ti -1c
+.RI "void \fBFuncomunicacion\fP (void *param)"
+.br
+.RI "Función de callback invocada al recibir datos por la UART\&. "
+.ti -1c
+.RI "void \fBapagartodo\fP (void)"
+.br
+.RI "Apaga todos los LEDs y deshabilita la pantalla LCD\&. "
+.ti -1c
+.RI "void \fBtoggle\fP (bool *al)"
+.br
+.RI "Conmuta el estado de una variable booleana recibida por referencia\&. "
+.ti -1c
+.RI "void \fBTecla1\fP (void *pvParameter)"
+.br
+.RI "Función ISR/callback de la tecla 1\&. Conmuta el estado de encendido (\fR\fBprender\fP\fP)\&. "
+.ti -1c
+.RI "void \fBTecla2\fP (void *pvParameter)"
+.br
+.RI "Función ISR/callback de la tecla 2\&. Conmuta el estado de retención (\fR\fBmantener\fP\fP)\&. "
+.ti -1c
+.RI "void \fBapp_main\fP (void)"
+.br
+.RI "Función principal del sistema\&. Inicializa periféricos, UART e interrupciones y crea las tareas\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "TaskHandle_t \fBMostrar_task_handle\fP = NULL"
+.br
+.RI "Handle para la tarea encargada de actualizar la pantalla LCD y los LEDs\&. "
+.ti -1c
+.RI "TaskHandle_t \fBMedir_task_handle\fP = NULL"
+.br
+.RI "Handle para la tarea encargada de realizar la medición con el sensor HC-SR04 y enviar por UART\&. "
+.ti -1c
+.RI "bool \fBprender\fP = true"
+.br
+.RI "Estado de encendido/apagado del sistema\&. "
+.ti -1c
+.RI "bool \fBmantener\fP = false"
+.br
+.RI "Estado de retención/congelamiento de la pantalla y valor medido\&. "
+.ti -1c
+.RI "uint16_t \fBdistancia\fP = 0"
+.br
+.RI "Variable global que almacena la distancia medida en centímetros\&. "
+.ti -1c
+.RI "uint16_t \fBaux\fP = 0"
+.br
+.RI "Variable auxiliar que guarda la última distancia congelada o en tiempo real para transmisión UART\&. "
+.ti -1c
+.RI "serial_config_t \fBmy_uart\fP"
+.br
+.RI "Configuración de la interfaz serie UART para comunicación con la PC\&. "
+.in -1c
+.SH "Descripción detallada"
+.PP 
+Medición de distancia con HC-SR04, display LCD, LEDs, switches por interrupción y puerto serie UART\&. 
+
+
+.PP
+Definición en el archivo \fBG2_Ejer_3\&.c\fP\&.
+.SH "Documentación de «define»"
+.PP 
+.SS "#define medir_delay   1000"
+
+.PP
+Valor en milisegundos para el intervalo entre cada medición de distancia y envío UART\&. 
+.PP
+Definición en la línea \fB49\fP del archivo \fBG2_Ejer_3\&.c\fP\&.
+.SS "#define mostrar_delay   100"
+
+.PP
+Valor en milisegundos para el refresco del display LCD y LEDs\&. 
+.PP
+Definición en la línea \fB43\fP del archivo \fBG2_Ejer_3\&.c\fP\&.
+.SH "Documentación de funciones"
+.PP 
+.SS "void apagartodo (void )"
+
+.PP
+Apaga todos los LEDs y deshabilita la pantalla LCD\&. 
+.PP
+Definición en la línea \fB124\fP del archivo \fBG2_Ejer_3\&.c\fP\&.
+.SS "void app_main (void )"
+
+.PP
+Función principal del sistema\&. Inicializa periféricos, UART e interrupciones y crea las tareas\&. 
+.PP
+Definición en la línea \fB233\fP del archivo \fBG2_Ejer_3\&.c\fP\&.
+.SS "void Funcomunicacion (void * param)"
+
+.PP
+Función de callback invocada al recibir datos por la UART\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIparam\fP Puntero a parámetro (no utilizado)\&. 
+.RE
+.PP
+
+.PP
+Definición en la línea \fB163\fP del archivo \fBG2_Ejer_3\&.c\fP\&.
+.SS "void Leds (uint16_t dis)"
+
+.PP
+Utiliza los LEDs como vúmetro según la distancia especificada\&. Controla el encendido de LEDs (vúmetro) según el rango de distancia recibido\&.
+
+.PP
+\fBParámetros\fP
+.RS 4
+\fIdistancia\fP Distancia medida en centímetros\&.
+.br
+\fIdis\fP Distancia en centímetros\&. 
+.RE
+.PP
+
+.PP
+Definición en la línea \fB129\fP del archivo \fBG2_Ejer_3\&.c\fP\&.
+.SS "void Tecla1 (void * pvParameter)"
+
+.PP
+Función ISR/callback de la tecla 1\&. Conmuta el estado de encendido (\fR\fBprender\fP\fP)\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIpvParameter\fP Puntero a parámetros (no utilizado)\&. 
+.RE
+.PP
+
+.PP
+Definición en la línea \fB202\fP del archivo \fBG2_Ejer_3\&.c\fP\&.
+.SS "void Tecla2 (void * pvParameter)"
+
+.PP
+Función ISR/callback de la tecla 2\&. Conmuta el estado de retención (\fR\fBmantener\fP\fP)\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIpvParameter\fP Puntero a parámetros (no utilizado)\&. 
+.RE
+.PP
+
+.PP
+Definición en la línea \fB206\fP del archivo \fBG2_Ejer_3\&.c\fP\&.
+.SS "void toggle (bool * al)"
+
+.PP
+Conmuta el estado de una variable booleana recibida por referencia\&. 
+.PP
+\fBParámetros\fP
+.RS 4
+\fIal\fP Puntero a la variable booleana a conmutar\&. 
+.RE
+.PP
+
+.PP
+Definición en la línea \fB158\fP del archivo \fBG2_Ejer_3\&.c\fP\&.
+.SH "Documentación de variables"
+.PP 
+.SS "uint16_t aux = 0"
+
+.PP
+Variable auxiliar que guarda la última distancia congelada o en tiempo real para transmisión UART\&. 
+.PP
+Definición en la línea \fB80\fP del archivo \fBG2_Ejer_3\&.c\fP\&.
+.SS "uint16_t distancia = 0"
+
+.PP
+Variable global que almacena la distancia medida en centímetros\&. 
+.PP
+Definición en la línea \fB77\fP del archivo \fBG2_Ejer_3\&.c\fP\&.
+.SS "bool mantener = false"
+
+.PP
+Estado de retención/congelamiento de la pantalla y valor medido\&. 
+.PP
+Definición en la línea \fB74\fP del archivo \fBG2_Ejer_3\&.c\fP\&.
+.SS "TaskHandle_t Medir_task_handle = NULL"
+
+.PP
+Handle para la tarea encargada de realizar la medición con el sensor HC-SR04 y enviar por UART\&. 
+.PP
+Definición en la línea \fB68\fP del archivo \fBG2_Ejer_3\&.c\fP\&.
+.SS "TaskHandle_t Mostrar_task_handle = NULL"
+
+.PP
+Handle para la tarea encargada de actualizar la pantalla LCD y los LEDs\&. 
+.PP
+Definición en la línea \fB65\fP del archivo \fBG2_Ejer_3\&.c\fP\&.
+.SS "serial_config_t my_uart"
+\fBValor inicial:\fP
+.nf
+                        = {
+    \&.port      = UART_PC,
+    \&.baud_rate = 115200,
+    \&.func_p    = Funcomunicacion,   
+    \&.param_p   = NULL
+}
+.PP
+.fi
+
+.PP
+Configuración de la interfaz serie UART para comunicación con la PC\&. 
+.PP
+Definición en la línea \fB83\fP del archivo \fBG2_Ejer_3\&.c\fP\&.
+.SS "bool prender = true"
+
+.PP
+Estado de encendido/apagado del sistema\&. 
+.PP
+Definición en la línea \fB71\fP del archivo \fBG2_Ejer_3\&.c\fP\&.
+.SH "Autor"
+.PP 
+Generado automáticamente por Doxygen para G2_Ejer_3 del código fuente\&.

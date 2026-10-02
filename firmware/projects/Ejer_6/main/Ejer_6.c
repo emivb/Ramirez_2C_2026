@@ -116,7 +116,7 @@ void app_main(void){
 	{
 		cont[i].pin =(20+i);
 		cont[i].dir = 1;
-		dis[i].dir=1;
+		dis[i].dir = 1;
 		GPIOInit(cont[i].pin, GPIO_OUTPUT);
 		GPIOInit(dis[i].pin, GPIO_OUTPUT);
 	}

@@ -1,0 +1,290 @@
+\doxysection{Referencia del archivo C:/\+\+Users/\+\+Emi/\+\+Documents/\+\+Repositorios/\+\+Ramirez\+\_\+2\+C\+\_\+2026/\+firmware/\+projects/\+\+G2\+\_\+\+Ejer\+\_\+4/\+main/\+\+G2\+\_\+\+Ejer\+\_\+4.c}
+\hypertarget{_g2___ejer__4_8c}{}\label{_g2___ejer__4_8c}\index{C:/Users/Emi/Documents/Repositorios/Ramirez\_2C\_2026/firmware/projects/G2\_Ejer\_4/main/G2\_Ejer\_4.c@{C:/Users/Emi/Documents/Repositorios/Ramirez\_2C\_2026/firmware/projects/G2\_Ejer\_4/main/G2\_Ejer\_4.c}}
+{\ttfamily \+\#include $<$stdio.\+h$>$}\newline
+{\ttfamily \+\#include $<$stdint.\+h$>$}\newline
+{\ttfamily \+\#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \+\#include "{}freertos/\+\+Free\+RTOS.\+h"{}}\newline
+{\ttfamily \+\#include "{}freertos/\+task.\+h"{}}\newline
+{\ttfamily \+\#include "{}uart\+\_\+mcu.\+h"{}}\newline
+{\ttfamily \+\#include "{}analog\+\_\+io\+\_\+mcu.\+h"{}}\newline
+{\ttfamily \+\#include "{}timer\+\_\+mcu.\+h"{}}\newline
+\doxysubsubsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\+\#define \doxymbox{\hyperlink{_g2___ejer__4_8c_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}~231
+\begin{DoxyCompactList}\small\item\em Tamaño del buffer de muestras de la señal ECG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{_g2___ejer__4_8c_aaba2e8f31c90bf685b29ec01cd74aca2}{Funcomunicacion}} (void \texorpdfstring{$\ast$}{*}param)
+\begin{DoxyCompactList}\small\item\em Función de callback invocada al recibir datos por la interfaz UART. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_g2___ejer__4_8c_afaccfed84cd1498a05ea04a65f1209b1}{Func\+TimerA}} (void \texorpdfstring{$\ast$}{*}param)
+\begin{DoxyCompactList}\small\item\em Función de servicio de interrupción (ISR) del Timer A. Notifica a la tarea de conversión A/\+D. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_g2___ejer__4_8c_a5088c3325764095ca222dc78c328f466}{Func\+TimerB}} (void \texorpdfstring{$\ast$}{*}param)
+\begin{DoxyCompactList}\small\item\em Función de servicio de interrupción (ISR) del Timer B. Notifica a la tarea de conversión D/\+A. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{_g2___ejer__4_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}{app\+\_\+main}} (void)
+\begin{DoxyCompactList}\small\item\em Función principal de la aplicación. Inicializa perifericos, timers y crea las tareas de Free\+RTOS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Task\+Handle\+\_\+t \doxymbox{\hyperlink{_g2___ejer__4_8c_aaf8ed8dabdd9a767c071f18ae09c8081}{Convertir\+AD\+\_\+task\+\_\+handle}} = NULL
+\begin{DoxyCompactList}\small\item\em Handle para la tarea encargada de la conversión A/\+D y envío UART. \end{DoxyCompactList}\item 
+Task\+Handle\+\_\+t \doxymbox{\hyperlink{_g2___ejer__4_8c_a25fb8b35adc6477c9ac522c477ffa8c8}{Convertir\+DA\+\_\+task\+\_\+handle}} = NULL
+\begin{DoxyCompactList}\small\item\em Handle para la tarea encargada de la conversión D/\+A (salida ECG). \end{DoxyCompactList}\item 
+Task\+Handle\+\_\+t \doxymbox{\hyperlink{_g2___ejer__4_8c_a2c75b4f34726e9b7a8dd42ca7fa1d31d}{main\+\_\+task\+\_\+handle}} = NULL
+\begin{DoxyCompactList}\small\item\em Handle para la tarea principal de la aplicación. \end{DoxyCompactList}\item 
+uint16\+\_\+t \doxymbox{\hyperlink{_g2___ejer__4_8c_a6555bc6e0e12aed1d6d19dcd2128e508}{valor}} = 0
+\begin{DoxyCompactList}\small\item\em Variable global que almacena el valor leído del canal analógico ADC. \end{DoxyCompactList}\item 
+uint16\+\_\+t \doxymbox{\hyperlink{_g2___ejer__4_8c_a722646142c6c78eb05f858c7cc5763ee}{indice}} = 0
+\begin{DoxyCompactList}\small\item\em Índice del buffer {\ttfamily \doxylink{_g2___ejer__4_8c_a2dafb8b8179af8e9f4cc4df3f588e42e}{ecg}} para recorrer las muestras del electrocardiograma. \end{DoxyCompactList}\item 
+uint16\+\_\+t \doxymbox{\hyperlink{_g2___ejer__4_8c_a22b7ae0bd628b770bfa68315fa000272}{escribir}} = 0
+\begin{DoxyCompactList}\small\item\em Valor actual del buffer enviado a la salida analógica DAC. \end{DoxyCompactList}\item 
+const char \doxymbox{\hyperlink{_g2___ejer__4_8c_a2dafb8b8179af8e9f4cc4df3f588e42e}{ecg}} \+[\doxymbox{\hyperlink{_g2___ejer__4_8c_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}]
+\begin{DoxyCompactList}\small\item\em Buffer digital con la forma de onda de un electrocardiograma (ECG). \end{DoxyCompactList}\item 
+serial\+\_\+config\+\_\+t \doxymbox{\hyperlink{_g2___ejer__4_8c_a2f7bb0a5f86a2b414817b05456859941}{my\+\_\+uart}}
+\begin{DoxyCompactList}\small\item\em Configuración del puerto serie UART para comunicación con la PC. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{_g2___ejer__4_8c_doc-define-members}
+\Hypertarget{_g2___ejer__4_8c_doc-define-members}
+\doxysubsection{Documentación de «define»}
+\Hypertarget{_g2___ejer__4_8c_a6b20d41d6252e9871430c242cb1a56e7}\index{G2\_Ejer\_4.c@{G2\_Ejer\_4.c}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!G2\_Ejer\_4.c@{G2\_Ejer\_4.c}}
+\doxysubsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
+{\footnotesize\ttfamily \label{_g2___ejer__4_8c_a6b20d41d6252e9871430c242cb1a56e7} 
+\+\#define BUFFER\+\_\+\+SIZE~231}
+
+
+
+Tamaño del buffer de muestras de la señal ECG. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__4_8c_source_l00041}{41}} del archivo \doxymbox{\hyperlink{_g2___ejer__4_8c_source}{G2\+\_\+\+Ejer\+\_\+4.\+c}}.
+
+
+
+\label{_g2___ejer__4_8c_doc-func-members}
+\Hypertarget{_g2___ejer__4_8c_doc-func-members}
+\doxysubsection{Documentación de funciones}
+\Hypertarget{_g2___ejer__4_8c_a630544a7f0a2cc40d8a7fefab7e2fe70}\index{G2\_Ejer\_4.c@{G2\_Ejer\_4.c}!app\_main@{app\_main}}
+\index{app\_main@{app\_main}!G2\_Ejer\_4.c@{G2\_Ejer\_4.c}}
+\doxysubsubsection{\texorpdfstring{app\_main()}{app\_main()}}
+{\footnotesize\ttfamily \label{_g2___ejer__4_8c_a630544a7f0a2cc40d8a7fefab7e2fe70} 
+void app\+\_\+main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Función principal de la aplicación. Inicializa perifericos, timers y crea las tareas de Free\+RTOS. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__4_8c_source_l00160}{160}} del archivo \doxymbox{\hyperlink{_g2___ejer__4_8c_source}{G2\+\_\+\+Ejer\+\_\+4.\+c}}.
+
+\Hypertarget{_g2___ejer__4_8c_aaba2e8f31c90bf685b29ec01cd74aca2}\index{G2\_Ejer\_4.c@{G2\_Ejer\_4.c}!Funcomunicacion@{Funcomunicacion}}
+\index{Funcomunicacion@{Funcomunicacion}!G2\_Ejer\_4.c@{G2\_Ejer\_4.c}}
+\doxysubsubsection{\texorpdfstring{Funcomunicacion()}{Funcomunicacion()}}
+{\footnotesize\ttfamily \label{_g2___ejer__4_8c_aaba2e8f31c90bf685b29ec01cd74aca2} 
+void Funcomunicacion (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{param}{}\end{DoxyParamCaption})}
+
+
+
+Función de callback invocada al recibir datos por la interfaz UART. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em param} & Puntero a parámetros (no utilizado). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__4_8c_source_l00118}{118}} del archivo \doxymbox{\hyperlink{_g2___ejer__4_8c_source}{G2\+\_\+\+Ejer\+\_\+4.\+c}}.
+
+\Hypertarget{_g2___ejer__4_8c_afaccfed84cd1498a05ea04a65f1209b1}\index{G2\_Ejer\_4.c@{G2\_Ejer\_4.c}!FuncTimerA@{FuncTimerA}}
+\index{FuncTimerA@{FuncTimerA}!G2\_Ejer\_4.c@{G2\_Ejer\_4.c}}
+\doxysubsubsection{\texorpdfstring{FuncTimerA()}{FuncTimerA()}}
+{\footnotesize\ttfamily \label{_g2___ejer__4_8c_afaccfed84cd1498a05ea04a65f1209b1} 
+void Func\+TimerA (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{param}{}\end{DoxyParamCaption})}
+
+
+
+Función de servicio de interrupción (ISR) del Timer A. Notifica a la tarea de conversión A/\+D. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em param} & Puntero a parámetros (no utilizado). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__4_8c_source_l00122}{122}} del archivo \doxymbox{\hyperlink{_g2___ejer__4_8c_source}{G2\+\_\+\+Ejer\+\_\+4.\+c}}.
+
+\Hypertarget{_g2___ejer__4_8c_a5088c3325764095ca222dc78c328f466}\index{G2\_Ejer\_4.c@{G2\_Ejer\_4.c}!FuncTimerB@{FuncTimerB}}
+\index{FuncTimerB@{FuncTimerB}!G2\_Ejer\_4.c@{G2\_Ejer\_4.c}}
+\doxysubsubsection{\texorpdfstring{FuncTimerB()}{FuncTimerB()}}
+{\footnotesize\ttfamily \label{_g2___ejer__4_8c_a5088c3325764095ca222dc78c328f466} 
+void Func\+TimerB (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{param}{}\end{DoxyParamCaption})}
+
+
+
+Función de servicio de interrupción (ISR) del Timer B. Notifica a la tarea de conversión D/\+A. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em param} & Puntero a parámetros (no utilizado). \\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__4_8c_source_l00128}{128}} del archivo \doxymbox{\hyperlink{_g2___ejer__4_8c_source}{G2\+\_\+\+Ejer\+\_\+4.\+c}}.
+
+
+
+\label{_g2___ejer__4_8c_doc-var-members}
+\Hypertarget{_g2___ejer__4_8c_doc-var-members}
+\doxysubsection{Documentación de variables}
+\Hypertarget{_g2___ejer__4_8c_aaf8ed8dabdd9a767c071f18ae09c8081}\index{G2\_Ejer\_4.c@{G2\_Ejer\_4.c}!ConvertirAD\_task\_handle@{ConvertirAD\_task\_handle}}
+\index{ConvertirAD\_task\_handle@{ConvertirAD\_task\_handle}!G2\_Ejer\_4.c@{G2\_Ejer\_4.c}}
+\doxysubsubsection{\texorpdfstring{ConvertirAD\_task\_handle}{ConvertirAD\_task\_handle}}
+{\footnotesize\ttfamily \label{_g2___ejer__4_8c_aaf8ed8dabdd9a767c071f18ae09c8081} 
+Task\+Handle\+\_\+t Convertir\+AD\+\_\+task\+\_\+handle = NULL}
+
+
+
+Handle para la tarea encargada de la conversión A/\+D y envío UART. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__4_8c_source_l00051}{51}} del archivo \doxymbox{\hyperlink{_g2___ejer__4_8c_source}{G2\+\_\+\+Ejer\+\_\+4.\+c}}.
+
+\Hypertarget{_g2___ejer__4_8c_a25fb8b35adc6477c9ac522c477ffa8c8}\index{G2\_Ejer\_4.c@{G2\_Ejer\_4.c}!ConvertirDA\_task\_handle@{ConvertirDA\_task\_handle}}
+\index{ConvertirDA\_task\_handle@{ConvertirDA\_task\_handle}!G2\_Ejer\_4.c@{G2\_Ejer\_4.c}}
+\doxysubsubsection{\texorpdfstring{ConvertirDA\_task\_handle}{ConvertirDA\_task\_handle}}
+{\footnotesize\ttfamily \label{_g2___ejer__4_8c_a25fb8b35adc6477c9ac522c477ffa8c8} 
+Task\+Handle\+\_\+t Convertir\+DA\+\_\+task\+\_\+handle = NULL}
+
+
+
+Handle para la tarea encargada de la conversión D/\+A (salida ECG). 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__4_8c_source_l00054}{54}} del archivo \doxymbox{\hyperlink{_g2___ejer__4_8c_source}{G2\+\_\+\+Ejer\+\_\+4.\+c}}.
+
+\Hypertarget{_g2___ejer__4_8c_a2dafb8b8179af8e9f4cc4df3f588e42e}\index{G2\_Ejer\_4.c@{G2\_Ejer\_4.c}!ecg@{ecg}}
+\index{ecg@{ecg}!G2\_Ejer\_4.c@{G2\_Ejer\_4.c}}
+\doxysubsubsection{\texorpdfstring{ecg}{ecg}}
+{\footnotesize\ttfamily \label{_g2___ejer__4_8c_a2dafb8b8179af8e9f4cc4df3f588e42e} 
+const char ecg\+[\doxymbox{\hyperlink{_g2___ejer__4_8c_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}]}
+
+{\bfseries Valor inicial:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \{}
+\DoxyCodeLine{\ \ \ \ 76,\ 77,\ 78,\ 77,\ 79,\ 86,\ 81,\ 76,\ 84,\ 93,\ 85,\ 80,}
+\DoxyCodeLine{\ \ \ \ 89,\ 95,\ 89,\ 85,\ 93,\ 98,\ 94,\ 88,\ 98,\ 105,\ 96,\ 91,}
+\DoxyCodeLine{\ \ \ \ 99,\ 105,\ 101,\ 96,\ 102,\ 106,\ 101,\ 96,\ 100,\ 107,\ 101,}
+\DoxyCodeLine{\ \ \ \ 94,\ 100,\ 104,\ 100,\ 91,\ 99,\ 103,\ 98,\ 91,\ 96,\ 105,\ 95,}
+\DoxyCodeLine{\ \ \ \ 88,\ 95,\ 100,\ 94,\ 85,\ 93,\ 99,\ 92,\ 84,\ 91,\ 96,\ 87,\ 80,}
+\DoxyCodeLine{\ \ \ \ 83,\ 92,\ 86,\ 78,\ 84,\ 89,\ 79,\ 73,\ 81,\ 83,\ 78,\ 70,\ 80,\ 82,}
+\DoxyCodeLine{\ \ \ \ 79,\ 69,\ 80,\ 82,\ 81,\ 70,\ 75,\ 81,\ 77,\ 74,\ 79,\ 83,\ 82,\ 72,}
+\DoxyCodeLine{\ \ \ \ 80,\ 87,\ 79,\ 76,\ 85,\ 95,\ 87,\ 81,\ 88,\ 93,\ 88,\ 84,\ 87,\ 94,}
+\DoxyCodeLine{\ \ \ \ 86,\ 82,\ 85,\ 94,\ 85,\ 82,\ 85,\ 95,\ 86,\ 83,\ 92,\ 99,\ 91,\ 88,}
+\DoxyCodeLine{\ \ \ \ 94,\ 98,\ 95,\ 90,\ 97,\ 105,\ 104,\ 94,\ 98,\ 114,\ 117,\ 124,\ 144,}
+\DoxyCodeLine{\ \ \ \ 180,\ 210,\ 236,\ 253,\ 227,\ 171,\ 99,\ 49,\ 34,\ 29,\ 43,\ 69,\ 89,}
+\DoxyCodeLine{\ \ \ \ 89,\ 90,\ 98,\ 107,\ 104,\ 98,\ 104,\ 110,\ 102,\ 98,\ 103,\ 111,\ 101,}
+\DoxyCodeLine{\ \ \ \ 94,\ 103,\ 108,\ 102,\ 95,\ 97,\ 106,\ 100,\ 92,\ 101,\ 103,\ 100,\ 94,\ 98,}
+\DoxyCodeLine{\ \ \ \ 103,\ 96,\ 90,\ 98,\ 103,\ 97,\ 90,\ 99,\ 104,\ 95,\ 90,\ 99,\ 104,\ 100,\ 93,}
+\DoxyCodeLine{\ \ \ \ 100,\ 106,\ 101,\ 93,\ 101,\ 105,\ 103,\ 96,\ 105,\ 112,\ 105,\ 99,\ 103,\ 108,}
+\DoxyCodeLine{\ \ \ \ 99,\ 96,\ 102,\ 106,\ 99,\ 90,\ 92,\ 100,\ 87,\ 80,\ 82,\ 88,\ 77,\ 69,\ 75,\ 79,}
+\DoxyCodeLine{\ \ \ \ 74,\ 67,\ 71,\ 78,\ 72,\ 67,\ 73,\ 81,\ 77,\ 71,\ 75,\ 84,\ 79,\ 77,\ 77,\ 76,\ 76,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Buffer digital con la forma de onda de un electrocardiograma (ECG). 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__4_8c_source_l00071}{71}} del archivo \doxymbox{\hyperlink{_g2___ejer__4_8c_source}{G2\+\_\+\+Ejer\+\_\+4.\+c}}.
+
+\Hypertarget{_g2___ejer__4_8c_a22b7ae0bd628b770bfa68315fa000272}\index{G2\_Ejer\_4.c@{G2\_Ejer\_4.c}!escribir@{escribir}}
+\index{escribir@{escribir}!G2\_Ejer\_4.c@{G2\_Ejer\_4.c}}
+\doxysubsubsection{\texorpdfstring{escribir}{escribir}}
+{\footnotesize\ttfamily \label{_g2___ejer__4_8c_a22b7ae0bd628b770bfa68315fa000272} 
+uint16\+\_\+t escribir = 0}
+
+
+
+Valor actual del buffer enviado a la salida analógica DAC. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__4_8c_source_l00066}{66}} del archivo \doxymbox{\hyperlink{_g2___ejer__4_8c_source}{G2\+\_\+\+Ejer\+\_\+4.\+c}}.
+
+\Hypertarget{_g2___ejer__4_8c_a722646142c6c78eb05f858c7cc5763ee}\index{G2\_Ejer\_4.c@{G2\_Ejer\_4.c}!indice@{indice}}
+\index{indice@{indice}!G2\_Ejer\_4.c@{G2\_Ejer\_4.c}}
+\doxysubsubsection{\texorpdfstring{indice}{indice}}
+{\footnotesize\ttfamily \label{_g2___ejer__4_8c_a722646142c6c78eb05f858c7cc5763ee} 
+uint16\+\_\+t indice = 0}
+
+
+
+Índice del buffer {\ttfamily \doxylink{_g2___ejer__4_8c_a2dafb8b8179af8e9f4cc4df3f588e42e}{ecg}} para recorrer las muestras del electrocardiograma. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__4_8c_source_l00063}{63}} del archivo \doxymbox{\hyperlink{_g2___ejer__4_8c_source}{G2\+\_\+\+Ejer\+\_\+4.\+c}}.
+
+\Hypertarget{_g2___ejer__4_8c_a2c75b4f34726e9b7a8dd42ca7fa1d31d}\index{G2\_Ejer\_4.c@{G2\_Ejer\_4.c}!main\_task\_handle@{main\_task\_handle}}
+\index{main\_task\_handle@{main\_task\_handle}!G2\_Ejer\_4.c@{G2\_Ejer\_4.c}}
+\doxysubsubsection{\texorpdfstring{main\_task\_handle}{main\_task\_handle}}
+{\footnotesize\ttfamily \label{_g2___ejer__4_8c_a2c75b4f34726e9b7a8dd42ca7fa1d31d} 
+Task\+Handle\+\_\+t main\+\_\+task\+\_\+handle = NULL}
+
+
+
+Handle para la tarea principal de la aplicación. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__4_8c_source_l00057}{57}} del archivo \doxymbox{\hyperlink{_g2___ejer__4_8c_source}{G2\+\_\+\+Ejer\+\_\+4.\+c}}.
+
+\Hypertarget{_g2___ejer__4_8c_a2f7bb0a5f86a2b414817b05456859941}\index{G2\_Ejer\_4.c@{G2\_Ejer\_4.c}!my\_uart@{my\_uart}}
+\index{my\_uart@{my\_uart}!G2\_Ejer\_4.c@{G2\_Ejer\_4.c}}
+\doxysubsubsection{\texorpdfstring{my\_uart}{my\_uart}}
+{\footnotesize\ttfamily \label{_g2___ejer__4_8c_a2f7bb0a5f86a2b414817b05456859941} 
+serial\+\_\+config\+\_\+t my\+\_\+uart}
+
+{\bfseries Valor inicial:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \{}
+\DoxyCodeLine{\ \ \ \ .port\ \ \ \ \ \ =\ UART\_PC,}
+\DoxyCodeLine{\ \ \ \ .baud\_rate\ =\ 115200,}
+\DoxyCodeLine{\ \ \ \ .func\_p\ \ \ \ =\ \doxymbox{\hyperlink{_g2___ejer__4_8c_aaba2e8f31c90bf685b29ec01cd74aca2}{Funcomunicacion}},}
+\DoxyCodeLine{\ \ \ \ .param\_p\ \ \ =\ NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Configuración del puerto serie UART para comunicación con la PC. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__4_8c_source_l00092}{92}} del archivo \doxymbox{\hyperlink{_g2___ejer__4_8c_source}{G2\+\_\+\+Ejer\+\_\+4.\+c}}.
+
+\Hypertarget{_g2___ejer__4_8c_a6555bc6e0e12aed1d6d19dcd2128e508}\index{G2\_Ejer\_4.c@{G2\_Ejer\_4.c}!valor@{valor}}
+\index{valor@{valor}!G2\_Ejer\_4.c@{G2\_Ejer\_4.c}}
+\doxysubsubsection{\texorpdfstring{valor}{valor}}
+{\footnotesize\ttfamily \label{_g2___ejer__4_8c_a6555bc6e0e12aed1d6d19dcd2128e508} 
+uint16\+\_\+t valor = 0}
+
+
+
+Variable global que almacena el valor leído del canal analógico ADC. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_g2___ejer__4_8c_source_l00060}{60}} del archivo \doxymbox{\hyperlink{_g2___ejer__4_8c_source}{G2\+\_\+\+Ejer\+\_\+4.\+c}}.
+
