@@ -8,7 +8,7 @@ set(srcs
     "microcontroller/src/uart_mcu.c"
     # "microcontroller/src/spi_mcu.c"
     # "microcontroller/src/pwm_mcu.c"
-    # "microcontroller/src/i2c_mcu.c"
+    "microcontroller/src/i2c_mcu.c"
     "microcontroller/src/gpio_fast_out_mcu.c"
     "microcontroller/src/analog_io_mcu.c"
     # "microcontroller/src/ble_mcu.c"
@@ -28,6 +28,8 @@ set(srcs
     # "devices/src/mpu6050.c"
     # "devices/src/buzzer.c"
     # "devices/src/l293.c"
+    "devices/src/madgwick.c"
+    "devices/src/mpu9250.c"
     )
 
 # Always included headers
@@ -40,7 +42,7 @@ idf_component_register(SRCS ${srcs}
                        esp_driver_uart 
                        esp_driver_gptimer 
                     #    esp_driver_ledc # uncomment for PWM support
-                    #    esp_driver_i2c  # uncomment for I2C support
+                       esp_driver_i2c  # uncomment for I2C support
                     #    esp_driver_spi  # uncomment for SPI support
                        esp_driver_sdm  # uncomment for DAC support
                        esp_adc         # uncomment for ADC support
